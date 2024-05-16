@@ -9,15 +9,6 @@ export class Email {
     //Object.freeze(this);
   }
 
-  static create(email: string): Either<InvalidEmailError, Email> {
-    
-    if (!Email.validate(email)){
-      return left(new InvalidEmailError(email));
-    }
-
-    return right(new Email(email));
-  }
-
   get value (): string{
     return this.email;
   }
@@ -34,5 +25,14 @@ export class Email {
     }
 
     return true;
+  }
+
+  static create(email: string): Either<InvalidEmailError, Email> {
+    
+    if (!Email.validate(email)){
+      return left(new InvalidEmailError(email));
+    }
+
+    return right(new Email(email));
   }
 }

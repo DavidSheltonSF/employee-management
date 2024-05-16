@@ -9,14 +9,6 @@ export class Name {
     //Object.freeze(this);
   }
 
-  static create (name: string): Either<InvalidNameError, Name>{
-
-    if (!Name.validate(name)){
-      return left(new InvalidNameError(name))
-    }
-    return right(new Name(name));
-  }
-
   get value (): string {
     return this.name;
   }
@@ -33,4 +25,13 @@ export class Name {
 
     return true;
   }
+
+  static create (name: string): Either<InvalidNameError, Name>{
+
+    if (!Name.validate(name)){
+      return left(new InvalidNameError(name))
+    }
+    return right(new Name(name));
+  }
+
 }
