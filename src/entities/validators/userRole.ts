@@ -2,9 +2,9 @@ import { Either, left, right } from "../../shared/either";
 import { InvalidUserRoleError } from "../errors/invalid-userRole";
 
 enum UserRoleEnum{
-  ADMIN = 'administrator',
+  ADMIN = 'admin',
   EDITOR = 'editor',
-  VIWER = 'viwer'
+  VIEWER = 'viewer'
 }
 
 export class UserRole {
@@ -21,14 +21,14 @@ export class UserRole {
 
   static validate(userRole: string): boolean{
 
-    switch(userRole){
+    switch(userRole.toLocaleLowerCase()){
       case UserRoleEnum.ADMIN:
         return true;
 
       case UserRoleEnum.EDITOR:
         return true;
 
-      case UserRoleEnum.VIWER:
+      case UserRoleEnum.VIEWER:
         return true;
 
       default:
