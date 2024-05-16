@@ -38,9 +38,14 @@ export class Role{
   }
 
   static validate(role: string): boolean{
-    const roleList = Object.values(RoleEnum);
+    const roleList = Object.values(RoleEnum)
+      .map((elem) => {
+        return String(elem);
+      });
 
-    if (!(role.toLocaleLowerCase() in roleList)){
+
+    if (!(roleList.includes(role.toLowerCase()))){
+      console.log('nao')
       return false;
     }
 
