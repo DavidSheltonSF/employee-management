@@ -2,7 +2,7 @@ import { Either, left, right } from "../../shared/either";
 import { InvalidDepartmentError } from "../errors/invalid-department";
 
 enum DepartmentEnum {
-  CUSTUMER_SERVICE = 'custumerService',
+  CUSTUMER_SERVICE = 'custumer_service',
   ADMINISTRATIVE = 'administrative',
   CLEANING = 'cleaning'
 }
@@ -24,7 +24,7 @@ export class Department {
         return String(elem);
       });
 
-    if(!(departmentList.includes(department))){
+    if(!(departmentList.includes(department.toLowerCase()))){
       return false;
     }
 
