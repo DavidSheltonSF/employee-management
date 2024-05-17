@@ -16,14 +16,24 @@ export class Birthday{
   static validate(birthday: string){
 
     try {
+
+      if (!birthday){
+        return false;
+      }
+
       const birthdayDate = new Date(birthday);
       const actualYear = new Date(Date.now()).getFullYear()
       const age = actualYear - birthdayDate.getFullYear()
 
+      if (birthdayDate.toDateString().toLowerCase() === 'invalid date'){
+        return false;
+      }
+
       if(age < 18){
         return false;
       }
-      
+
+      return true;
     }
     catch(err){
       console.log(err);
