@@ -14,5 +14,11 @@ describe('Department validator', () => {
     expect(Department.validate('CUSTOMER_service')).toBe(true);
     expect(Department.validate('AdMinistrative')).toBe(true);
     expect(Department.validate('Cleaning')).toBe(true);
+  });
+
+  test('Should not accept invalid values', ()=>{
+    expect(Department.validate('')).toBe(true);
+    expect(Department.validate('custumer_serv')).toBe(true);
+    expect(Department.validate('Cleaning23')).toBe(true);
   })
 })
