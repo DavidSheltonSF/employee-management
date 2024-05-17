@@ -2,7 +2,7 @@ import { Either, left, right } from "../../shared/either";
 import { InvalidDepartmentError } from "../errors/invalid-department";
 
 enum DepartmentEnum {
-  CUSTUMER_SERVICE = 'custumer_service',
+  CUSTOMER_SERVICE = 'customer_service',
   ADMINISTRATIVE = 'administrative',
   CLEANING = 'cleaning'
 }
