@@ -45,7 +45,6 @@ export class Role{
 
 
     if (!(roleList.includes(role.toLowerCase()))){
-      console.log('nao')
       return false;
     }
 
