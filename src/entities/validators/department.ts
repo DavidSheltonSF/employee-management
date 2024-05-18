@@ -1,12 +1,6 @@
 import { Either, left, right } from "../../shared/either";
 import { InvalidDepartmentError } from "../errors/invalid-department";
 
-enum DepartmentEnum {
-  CUSTOMER_SERVICE = 'customer_service',
-  ADMINISTRATIVE = 'administrative',
-  CLEANING = 'cleaning'
-}
-
 export class Department {
   private readonly department: string
 
@@ -19,12 +13,15 @@ export class Department {
   }
 
   static validate(department: string): boolean{
-    const departmentList = Object.values(DepartmentEnum)
-      .map((elem) => {
-        return String(elem);
-      });
 
-    if(!(departmentList.includes(department.toLowerCase()))){
+    if(department.length < 2){
+      return false;
+    }
+
+    // Accepts just lowercase words,
+    // with no special characters or numbers
+    const tester = /^[a-z_]+$/
+    if(!tester.test(department)){
       return false;
     }
 
@@ -36,7 +33,7 @@ export class Department {
     if (!Department.validate(department)){
       return left(new InvalidDepartmentError(department));
     }
-
-    return right(new Department(department))
+    
+    return right(new Department(department));
   }
 }
