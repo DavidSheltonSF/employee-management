@@ -1,30 +1,6 @@
 import { Either, left, right } from "../../shared/either";
 import { InvalidRoleError } from "../errors/invalid-role";
 
-enum RoleEnum{
-  // Gerente de loja
-  STORE_MANAGER = 'storeManager',
-  // Assistente administrativo
-  ADMINISTRATIVE_ASSISTANT = 'administrativeAssistant',
-  // Fiscal de loja
-  LOSS_PREVENTION_OFFICER = 'loss_prevention_officer',
-  // Operador de caixa
-  CASHIER = 'cashier',
-  // Empacotador
-  PACKER = 'packer',
-  // Açougueiro
-  BUTCHER = 'butcher',
-  // Padeiro
-  BACKER = 'backer',
-  // Atendente de frios e laticínios
-  DELI_WORKER = 'deliWorker',
-  // Repositor de mercadorias
-  STOCKER = 'stocker',
-  // Promotor
-  PROMOTER = 'promoter',
-  // Faxineiro
-  JANITOR = 'janitor'
-}
 
 export class Role{
   private readonly role: string;
@@ -38,16 +14,15 @@ export class Role{
   }
 
   static validate(role: string): boolean{
-    const roleList = Object.values(RoleEnum)
-      .map((elem) => {
-        return String(elem);
-      });
 
 
-    if (!(roleList.includes(role.toLowerCase()))){
+    // Accepts just lowercase words and "_",
+    // with no special characters or numbers
+    const tester = /^[a-z_]+$/
+    if(!tester.test(role)){
       return false;
     }
-
+    
     return true;
   }
 
