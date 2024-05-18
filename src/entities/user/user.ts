@@ -29,7 +29,7 @@ export class User {
     const nameOrError: Either<InvalidNameError, Name> = Name.
     create(userData.name);
     const lastNameOrError: Either<InvalidNameError, Name> = Name.
-    create(userData.name);
+    create(userData.lastName);
     const emailOrError: Either<InvalidEmailError, Email> = Email.
     create(userData.email);
     const userRoleOrError: Either<InvalidUserRoleError, UserRole> = UserRole.
@@ -42,7 +42,7 @@ export class User {
     }
 
     if(lastNameOrError.isLeft()){
-      return left(nameOrError.value);
+      return left(lastNameOrError.value);
     }
 
     if(emailOrError.isLeft()){
