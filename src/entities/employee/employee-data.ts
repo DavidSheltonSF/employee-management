@@ -2,8 +2,8 @@ export interface EmployeeData {
   name: string
   lastName: string
   email: string
-  birthDay: string
+  birthday: string
   gender: string
-  department: string
   role: string
+  department: string
 }
