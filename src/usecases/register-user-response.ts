@@ -1,5 +1,5 @@
 import { UserData } from "../entities/user/user-data";
-import { InvalidBirthdayError, InvalidDepartmentError, InvalidEmailError, InvalidGenderError, InvalidNameError, InvalidPasswordError, InvalidRoleError, InvalidUserRoleError } from "../entities/errors";
+import { InvalidEmailError, InvalidNameError, InvalidPasswordError, InvalidUserRoleError } from "../entities/errors";
 import { Either } from "../shared/either";
 
 
