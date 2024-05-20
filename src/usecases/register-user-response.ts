@@ -3,5 +3,5 @@ import { InvalidEmailError, InvalidNameError, InvalidPasswordError, InvalidUserR
 import { Either } from "../shared/either";
 
 
-export type RegisterEmployeeResponse = Either<InvalidNameError | 
+export type RegisterUserResponse = Either<InvalidNameError | 
 InvalidEmailError | InvalidPasswordError | InvalidUserRoleError, UserData>
