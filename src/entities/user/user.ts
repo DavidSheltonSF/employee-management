@@ -9,11 +9,11 @@ import {
 import { Either, left, right } from "../../shared/either";
 
 export class User {
-  private readonly name: Name;
-  private readonly lastName: Name;
-  private readonly email: Email;
-  private readonly userRole: UserRole
-  private readonly password: Password
+  name: Name;
+  lastName: Name;
+  email: Email;
+  userRole: UserRole
+  password: Password
 
   private constructor(
     name: Name, lastName: Name, email: Email, 
