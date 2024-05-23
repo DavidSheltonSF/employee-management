@@ -1,6 +1,7 @@
 import { UserData } from "../../entities/user/user-data";
-import { RegisterUserResponse } from "../register-user-response";
+import { RegisterUserResponse } from "./response";
 
-export interface RegisterUser {
+export interface RegisterUserInterface
+ {
   register: (user: UserData) => Promise<RegisterUserResponse>
 }  
