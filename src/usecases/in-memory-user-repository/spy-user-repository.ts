@@ -32,10 +32,9 @@ export class SpyUserRepository implements UserRepository {
 
   async add (userData: UserData): Promise<void> {
 
-    const exists = this.exists(userData.email);
+    const exists = await this.exists(userData.email);
     if (!exists){
       this.users.push(userData);
-    }
-    
+    } 
   }
 }
