@@ -1,4 +1,4 @@
-import { UseCaseError } from "./usecase-error";
+import { UseCaseError } from "./interface/usecase-error";
 
 export class UserExistsError extends Error implements UseCaseError {
   constructor(email: string){
