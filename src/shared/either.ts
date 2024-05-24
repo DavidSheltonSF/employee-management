@@ -11,7 +11,7 @@ export class Left<L, A> {
     return true;
   }
 
-  ifRight(): this is Right<L, A> {
+  isRight(): this is Right<L, A> {
     return false;
   }
 }
@@ -27,7 +27,7 @@ export class Right<L, A> {
     return false;
   }
 
-  ifRight(): this is Right<L, A> {
+  isRight(): this is Right<L, A> {
     return true;
   }
 }
