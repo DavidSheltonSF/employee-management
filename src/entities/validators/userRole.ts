@@ -3,7 +3,8 @@ import { InvalidUserRoleError } from "../errors/invalid-userRole";
 
 enum UserRoleEnum{
   ADMIN = 'admin',
-  EDITOR = 'editor',
+  MANAGER = 'manager',
+  EMPLOYEE = 'employee',
   VIEWER = 'viewer'
 }
 
@@ -21,11 +22,14 @@ export class UserRole {
 
   static validate(userRole: string): boolean{
 
-    switch(userRole.toLocaleLowerCase()){
+    switch(userRole){
       case UserRoleEnum.ADMIN:
         return true;
 
-      case UserRoleEnum.EDITOR:
+      case UserRoleEnum.MANAGER:
+        return true;
+
+      case UserRoleEnum.EMPLOYEE:
         return true;
 
       case UserRoleEnum.VIEWER:
