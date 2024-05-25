@@ -2,20 +2,20 @@ import { EmployeeData } from "../../entities/employee/employee-data";
 import { EmployeeRepository } from "../ports/employee-repository";
 
 export class SpyEmployeeRepository implements EmployeeRepository {
-  users: EmployeeData[] = [];
-  updateUserParams: Record<string, EmployeeData> = {}
+  Employees: EmployeeData[] = [];
+  updateEmployeeParams: Record<string, EmployeeData> = {}
 
-  constructor(users: EmployeeData[]){
-    this.users = users;
+  constructor(Employees: EmployeeData[]){
+    this.Employees = Employees;
   }
 
-  async findAllUsers(): Promise<EmployeeData[]>{
-    return this.users;
+  async findAllEmployees(): Promise<EmployeeData[]>{
+    return this.Employees;
   }
 
-  async findUserByEmail (email: string): Promise<EmployeeData| null> {
+  async findEmployeeByEmail (email: string): Promise<EmployeeData| null> {
     var u: EmployeeData
-    for (u of this.users) {
+    for (u of this.Employees) {
       if (u.email === email) {
         return u
       }
@@ -24,7 +24,7 @@ export class SpyEmployeeRepository implements EmployeeRepository {
   }
 
   async exists (email: string): Promise<boolean> {
-    if (await this.findUserByEmail(email) === null){
+    if (await this.findEmployeeByEmail(email) === null){
       return false;
     }
 
@@ -35,19 +35,19 @@ export class SpyEmployeeRepository implements EmployeeRepository {
 
     const exists = await this.exists(EmployeeData.email);
     if (!exists){
-      this.users.push(EmployeeData);
+      this.Employees.push(EmployeeData);
     } 
   }
 
-  async update (EmployeeData: EmployeeData):Promise<boolean>{
-    const {email} = EmployeeData;
-    const user = await this.findUserByEmail(email);
+  async update (employeeData: EmployeeData):Promise<boolean>{
+    const {email} = employeeData;
+    const Employee = await this.findEmployeeByEmail(email);
 
-    if (!user){
+    if (!Employee){
       return false;
     }
 
-    this.updateUserParams['EmployeeData'] = EmployeeData;
+    this.updateEmployeeParams['EmployeeData'] = employeeData;
 
     return true;
   }
