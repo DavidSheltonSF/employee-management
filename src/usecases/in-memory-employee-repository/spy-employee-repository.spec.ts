@@ -1,6 +1,6 @@
 import { SpyEmployeeRepository } from "./spy-employee-repository";
 
-const fakeEmployeesDatabase = [
+const fakeDataBase = [
   {
     name: 'David',
     lastName: 'Shelton', 
@@ -21,7 +21,7 @@ const fakeEmployeesDatabase = [
   },
 ]
 
-const spyEmployeeRepository = new SpyEmployeeRepository(fakeEmployeesDatabase);
+const spyEmployeeRepository = new SpyEmployeeRepository(fakeDataBase);
 
 describe('SpyEmployeeRepository validator', () => {
    test('Should return all Employees in the repository', async () => {
