@@ -28,9 +28,7 @@ export class RegisterEmployee implements RegisterEmployeeInterface {
       return left(new DuplicateDataError(employee.email.value));
     }
 
-    this.employeeRepository.add(
-      employeeData
-    )
+    await this.employeeRepository.add(employeeData)
 
     return right(employeeData)
 
