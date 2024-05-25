@@ -21,9 +21,6 @@ const fakeDataBase = [
   }
 ]
 
-const spyUserRepository = new SpyUserRepository(fakeDataBase);
-const registerUserUseCase = new RegisterUser(spyUserRepository)
-
 const newUser = {
   name: 'NewUser',
   lastName: 'New', 
@@ -34,6 +31,8 @@ const newUser = {
 
 describe('RegisterUser validator', () => {
   test('Should Register user correctly', async () => {
+    const spyUserRepository = new SpyUserRepository(fakeDataBase);
+    const registerUserUseCase = new RegisterUser(spyUserRepository);
     
     const response = await registerUserUseCase.register(newUser);
     const user = await spyUserRepository.findUserByEmail(newUser.email);
@@ -46,9 +45,15 @@ describe('RegisterUser validator', () => {
     // Checking if user was registered in repository
     expect(await spyUserRepository.findUserByEmail(newUser.email))
       .toEqual(newUser);
+
+      expect(spyUserRepository.addParams['userData'])
+      .toEqual(newUser);
   });
 
   test('Should not register user that already exists', async () => {
+    const spyUserRepository = new SpyUserRepository(fakeDataBase);
+    const registerUserUseCase = new RegisterUser(spyUserRepository);
+
     const duplicatedUser = {
       name: 'Maria',
       lastName: 'Carla', 
@@ -59,5 +64,8 @@ describe('RegisterUser validator', () => {
     
     const response = await registerUserUseCase.register(duplicatedUser);
     expect(response).toEqual(left(new DuplicateDataError(duplicatedUser.email)));
+    // Checking if user was not registered in repository
+    expect(spyUserRepository.addParams)
+      .toEqual({});
   });
 })
