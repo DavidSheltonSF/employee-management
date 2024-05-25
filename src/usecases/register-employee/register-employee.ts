@@ -1,8 +1,8 @@
 import { Employee } from "../../entities/employee/employee";
 import { EmployeeData } from "../../entities/employee/employee-data";
 import { left, right } from "../../shared/either";
-import { DuplicateDataError } from "../errors/duplicate-data";
-import { EmployeeRepository } from "../ports/employee-repository";
+import { DuplicateDataError } from "../_errors/duplicate-data";
+import { EmployeeRepository } from "../_ports/employee-repository";
 import { RegisterEmployeeInterface } from "./interface";
 import { RegisterEmployeeResponse } from "./response";
 

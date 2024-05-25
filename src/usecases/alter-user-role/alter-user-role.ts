@@ -1,6 +1,6 @@
 import { left, right } from "../../shared/either";
-import { NoResultError } from "../errors/no-result";
-import { UserRepository } from "../ports/user-repository";
+import { NoResultError } from "../_errors/no-result";
+import { UserRepository } from "../_ports/user-repository";
 import { AlterUserRoleInterface } from "./interface";
 import { AlterUserRoleResponse } from "./response";
 

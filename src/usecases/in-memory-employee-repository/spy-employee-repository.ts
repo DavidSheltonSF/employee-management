@@ -1,5 +1,5 @@
 import { EmployeeData } from "../../entities/employee/employee-data";
-import { EmployeeRepository } from "../ports/employee-repository";
+import { EmployeeRepository } from "../_ports/employee-repository";
 
 export class SpyEmployeeRepository implements EmployeeRepository {
   Employees: EmployeeData[] = [];

@@ -2,8 +2,8 @@ import { InvalidEmailError, InvalidNameError, InvalidPasswordError, InvalidUserR
 import { User } from "../../entities/user/user";
 import { UserData } from "../../entities/user/user-data";
 import { Either, left, right } from "../../shared/either";
-import { DuplicateDataError } from "../errors/duplicate-data";
-import { UserRepository } from "../ports/user-repository";
+import { DuplicateDataError } from "../_errors/duplicate-data";
+import { UserRepository } from "../_ports/user-repository";
 import { RegisterUserInterface } from "./interface";
 import { RegisterUserResponse } from "./response";
 

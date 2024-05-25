@@ -1,5 +1,5 @@
 import { UserData } from "../../entities/user/user-data";
-import { UserRepository } from "../ports/user-repository";
+import { UserRepository } from "../_ports/user-repository";
 
 export class SpyUserRepository implements UserRepository {
   users: UserData[] = [];
