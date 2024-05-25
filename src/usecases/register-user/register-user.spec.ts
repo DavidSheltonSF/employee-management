@@ -1,5 +1,5 @@
 import { RegisterUser } from "./register-user";
-import { SpyUserRepository } from "../in-memory-user-repository/spy-user-repository";
+import { SpyUserRepository } from "../_in-memory-user-repository/spy-user-repository";
 
 
 const fakeDataBase = [
