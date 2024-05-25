@@ -1,5 +1,5 @@
 import { left, right } from "../../shared/either";
-import { UserNotFoundError } from "../errors/user-not-found";
+import { UserNotFoundError } from "../errors/no-result";
 import { UserRepository } from "../ports/user-repository";
 import { AlterUserRoleInterface } from "./interface";
 import { AlterUserRoleResponse } from "./response";

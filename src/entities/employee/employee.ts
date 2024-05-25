@@ -10,13 +10,13 @@ import {
 
 
 export class Employee {
-  private readonly name: Name;
-  private readonly lastName: Name;
-  private readonly email: Email
-  private readonly birthday: Birthday;
-  private readonly gender: Gender;
-  private readonly department: Department;
-  private readonly role: Role;
+  name: Name;
+  lastName: Name;
+  email: Email
+  birthday: Birthday;
+  gender: Gender;
+  department: Department;
+  role: Role;
 
   private constructor(
     name: Name,
