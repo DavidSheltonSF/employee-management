@@ -15,8 +15,6 @@ export class RegisterUser implements RegisterUserInterface {
   }
 
   async register(userData: UserData): Promise<RegisterUserResponse> {
-    const {name, lastName, email, userRole, password } = userData;
-
 
     const userOrError: Either<InvalidNameError | 
     InvalidEmailError | InvalidPasswordError | 
@@ -32,13 +30,7 @@ export class RegisterUser implements RegisterUserInterface {
       return left(new DuplicateDataError(user.email.value))
     }
 
-    await this.userRepository.add({
-      name,
-      lastName,
-      email,
-      userRole,
-      password
-    });
+    await this.userRepository.add(userData);
 
     return right(userData);
 
