@@ -4,6 +4,6 @@ export interface EmployeeRepository {
   findAllEmployees: () => Promise<EmployeeData[]>
   findEmployeeByEmail: (email: string) => Promise<EmployeeData | null>
   add: (employeeData: EmployeeData) => Promise<void>
-  update: (employeeData: EmployeeData) => Promise<boolean>
+  update: (employeeData: EmployeeData) => Promise<void>
   exists: (email: string) => Promise<boolean>
 }

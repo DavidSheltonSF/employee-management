@@ -39,16 +39,13 @@ export class SpyEmployeeRepository implements EmployeeRepository {
     } 
   }
 
-  async update (employeeData: EmployeeData):Promise<boolean>{
+  async update (employeeData: EmployeeData):Promise<void>{
     const {email} = employeeData;
     const Employee = await this.findEmployeeByEmail(email);
 
-    if (!Employee){
-      return false;
+    if (Employee){
+      this.updateEmployeeParams['EmployeeData'] = employeeData;
     }
 
-    this.updateEmployeeParams['EmployeeData'] = employeeData;
-
-    return true;
   }
 }
