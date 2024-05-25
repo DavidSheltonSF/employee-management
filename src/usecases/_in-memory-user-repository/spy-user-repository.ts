@@ -3,7 +3,8 @@ import { UserRepository } from "../_ports/user-repository";
 
 export class SpyUserRepository implements UserRepository {
   users: UserData[] = [];
-  updateUserParams: Record<string, UserData> = {}
+  addParams: Record<string, UserData> = {}
+  updateParams: Record<string, UserData> = {}
 
   constructor(users: UserData[]){
     this.users = users;
@@ -33,10 +34,9 @@ export class SpyUserRepository implements UserRepository {
 
   async add (userData: UserData): Promise<void> {
 
-    const exists = await this.exists(userData.email);
-    if (!exists){
-      this.users.push(userData);
-    } 
+    this.users.push(userData);
+    this.addParams['userData'] = userData
+   
   }
 
   async update (userData: UserData):Promise<boolean>{
@@ -47,7 +47,7 @@ export class SpyUserRepository implements UserRepository {
       return false;
     }
 
-    this.updateUserParams['userData'] = userData;
+    this.updateParams['userData'] = userData;
 
     return true;
   }
