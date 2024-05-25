@@ -6,7 +6,7 @@ import {
   InvalidBirthdayError, 
   InvalidEmailError, 
   InvalidDepartmentError, 
-  InvalidGenderError, InvalidPasswordError, InvalidRoleError } from "../errors";
+  InvalidGenderError, InvalidRoleError } from "../errors";
 
 
 export class Employee {
@@ -38,7 +38,7 @@ export class Employee {
 
   static create(employeeData: EmployeeData): Either<
   InvalidNameError | InvalidEmailError | InvalidBirthdayError | 
-  InvalidDepartmentError | InvalidGenderError | InvalidRoleError | InvalidPasswordError, Employee>{
+  InvalidDepartmentError | InvalidGenderError | InvalidRoleError, Employee>{
 
     const nameOrError: Either<InvalidNameError, Name> = Name.create(employeeData.name);
     const lastNameOrError: Either<InvalidNameError, Name> = Name.create(employeeData.lastName);
