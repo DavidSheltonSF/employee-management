@@ -2,11 +2,11 @@ import { SpyUserRepository } from "./spy-user-repository";
 
 const fakeUsersDatabase = [
   {
-    name: 'David',
-    lastName: 'Shelton', 
-    email: 'david@bugmail.com',
+    name: 'Marcos',
+    lastName: 'Jeraldo', 
+    email: 'marcos@bugmail.com',
     userRole: 'admin',
-    password: 'david123'
+    password: 'marcos123'
   },
   {
     name: 'Maria',
@@ -23,11 +23,11 @@ describe('SpyUserRepository validator', () => {
    test('Should return all users in the repository', async () => {
     expect(await spyUserRepository.findAllUsers()).toEqual([
       {
-        name: 'David',
-        lastName: 'Shelton', 
-        email: 'david@bugmail.com',
+        name: 'Marcos',
+        lastName: 'Jeraldo', 
+        email: 'marcos@bugmail.com',
         userRole: 'admin',
-        password: 'david123'
+        password: 'marcos123'
       },
       {
         name: 'Maria',

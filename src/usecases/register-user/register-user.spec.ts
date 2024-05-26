@@ -6,11 +6,11 @@ import { left } from "../../shared/either";
 
 const fakeDataBase = [
   {
-    name: 'David',
-    lastName: 'Shelton', 
-    email: 'david@bugmail.com',
+    name: 'Marcos',
+    lastName: 'Jeraldo', 
+    email: 'marcos@bugmail.com',
     userRole: 'admin',
-    password: 'david123'
+    password: 'marcos123'
   },
   {
     name: 'Maria',

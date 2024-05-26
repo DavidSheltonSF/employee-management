@@ -2,10 +2,10 @@ import { SpyEmployeeRepository } from "./spy-employee-repository";
 
 const fakeDataBase = [
   {
-    name: 'David',
-    lastName: 'Shelton', 
-    email: 'david@bugmail.com',
-    birthday: '2002-02-26',
+    name: 'Marcos',
+    lastName: 'Jeraldo', 
+    email: 'marcos@bugmail.com',
+    birthday: '2000-05-30',
     gender: 'male',
     role: 'developer',
     department: 'techlonogy'
@@ -27,10 +27,10 @@ describe('SpyEmployeeRepository validator', () => {
    test('Should return all Employees in the repository', async () => {
     expect(await spyEmployeeRepository.findAllEmployees()).toEqual([
       {
-        name: 'David',
-        lastName: 'Shelton', 
-        email: 'david@bugmail.com',
-        birthday: '2002-02-26',
+        name: 'Marcos',
+        lastName: 'Jeraldo', 
+        email: 'marcos@bugmail.com',
+        birthday: '2000-05-30',
         gender: 'male',
         role: 'developer',
         department: 'techlonogy'
