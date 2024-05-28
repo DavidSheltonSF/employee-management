@@ -1,5 +1,5 @@
 import { User } from "../../entities/user/user";
-import { UserData } from "../../entities/user/user-data";
+import { UserDataWithoutEmail } from "./interface";
 import { left, right } from "../../shared/either";
 import { NoResultError } from "../_errors/no-result";
 import { UserRepository } from "../_ports/user-repository";
@@ -13,7 +13,7 @@ export class AlterUser implements AlterUserInterface {
     this.userRepository = userRepo;
   }
 
-  async alter(email: string, userData: UserData): Promise<AlterUserResponse>{
+  async alter(email: string, userData: UserDataWithoutEmail): Promise<AlterUserResponse>{
 
     const user = await this.userRepository.findUserByEmail(email);
 

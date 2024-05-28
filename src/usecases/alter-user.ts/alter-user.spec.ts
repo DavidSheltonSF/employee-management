@@ -36,7 +36,10 @@ describe('alterUser validator', () => {
     const spyUserRepository = new SpyUserRepository(fakeDataBase);
     const alterUserUseCase = new AlterUser(spyUserRepository);
     
-    const response = await alterUserUseCase.alter(employToAlter.email, employToAlter);
+    const {name, lastName, userRole, password} = employToAlter
+    const response = await alterUserUseCase.alter(employToAlter.email, {
+      name, lastName, userRole, password
+    });
 
     // Checking if response of the usecase is right
     expect(response.isRight()).toBeTruthy()

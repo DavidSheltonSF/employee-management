@@ -1,10 +1,11 @@
 import { UserData } from "../../entities/user/user-data";
 import { UserRepository } from "../_ports/user-repository";
+import { UserDataWithoutEmail } from "../alter-user.ts/interface";
 
 export class SpyUserRepository implements UserRepository {
   users: UserData[] = [];
   addParams: Record<string, UserData> = {}
-  updateParams: Record<string, string | UserData> = {};
+  updateParams: Record<string, string | UserData | UserDataWithoutEmail> = {};
   deleteParams: Record<string, string > = {};
 
   constructor(users: UserData[]){
@@ -40,7 +41,7 @@ export class SpyUserRepository implements UserRepository {
    
   }
 
-  async update (email: string, userData: UserData):Promise<void>{
+  async update (email: string, userData: UserData | UserDataWithoutEmail):Promise<void>{
     const user = await this.findUserByEmail(email);
 
     if (user){
