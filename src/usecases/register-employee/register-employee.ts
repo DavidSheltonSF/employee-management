@@ -2,6 +2,7 @@ import { Employee } from "../../entities/employee/employee";
 import { EmployeeData } from "../../entities/employee/employee-data";
 import { left, right } from "../../shared/either";
 import { DuplicateDataError } from "../_errors/duplicate-data";
+import { TooYoungAgeError } from "../_errors/too-young-age";
 import { EmployeeRepository } from "../_ports/employee-repository";
 import { RegisterEmployeeInterface } from "./interface";
 import { RegisterEmployeeResponse } from "./response";
@@ -22,6 +23,15 @@ export class RegisterEmployee implements RegisterEmployeeInterface {
     }
 
     const employee = employeeOrError.value;
+
+    const birthday = new Date(employee.birthday.value);
+    const actualYear = new Date(Date.now()).getFullYear();
+    const age = actualYear - birthday.getFullYear();
+
+    if(age < 18){
+      return left(new TooYoungAgeError(age));
+    }
+
     const exists = this.employeeRepository.exists(employee.email.value);
 
     if ((await exists).valueOf()){
