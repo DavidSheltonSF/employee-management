@@ -80,10 +80,10 @@ describe('RegisterEmployee validator', () => {
     const response = await registerEmployeeUseCase.register(newEmployee)
 
     expect(response).toEqual(left(new TooYoungAgeError(newEmployee.birthday)));
+    expect(spyEmployeeRepository.addParams).toEqual({});
   
   })
-
-  /*
+  
   test('Should not register Employee that already exists', async () => {
     const spyEmployeeRepository = new SpyEmployeeRepository(fakeDataBase);
     const registerEmployeeUseCase = new RegisterEmployee(spyEmployeeRepository);
@@ -101,8 +101,7 @@ describe('RegisterEmployee validator', () => {
     const response = await registerEmployeeUseCase.register(duplicatedEmployee);
     expect(response).toEqual(left(new DuplicateDataError(duplicatedEmployee.email)));
     // Checking if Employee was not registered in repository
-    expect(spyEmployeeRepository.addParams)
-      .toEqual({});
+    expect(spyEmployeeRepository.addParams).toEqual({});
   });
-  */
+  
 })
