@@ -24,12 +24,12 @@ export class RegisterEmployee implements RegisterEmployeeInterface {
 
     const employee = employeeOrError.value;
 
-    const birthday = new Date(employee.birthday.value);
+    const birthday = employee.birthday.value;
     const actualYear = new Date(Date.now()).getFullYear();
-    const age = actualYear - birthday.getFullYear();
+    const age = actualYear - new Date(birthday).getFullYear();
 
     if(age < 18){
-      return left(new TooYoungAgeError(age));
+      return left(new TooYoungAgeError(birthday));
     }
 
     const exists = this.employeeRepository.exists(employee.email.value);
