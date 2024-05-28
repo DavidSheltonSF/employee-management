@@ -1,4 +1,5 @@
-import { right } from "../../shared/either";
+import { left, right } from "../../shared/either";
+import { NoResultError } from "../_errors/no-result";
 import { SpyUserRepository } from "../_in-memory-user-repository/spy-user-repository"
 import { AlterUserRole } from "./alter-user-role";
 
@@ -29,5 +30,15 @@ describe('AlterUserRole tester', () => {
     // Check if response is valid
     expect(response).toEqual(right(true));
     // Check if paramethers were added to spy correctly
+  });
+
+  test('Should not alter user with not registred email', async () => {
+    const spyUserRepository = new SpyUserRepository(fakeDataBase);
+    const alterUserRole = new AlterUserRole(spyUserRepository);
+    const response = await alterUserRole.alterUserRole('notregistred@bugmail.com', 'viwer');
+    // Check if response is invalid
+    expect(response).toEqual(left(new NoResultError('notregistred@bugmail.com')));
+    // Check if paramethers were added to spy correctly
+    expect(spyUserRepository.updateParams).toEqual({});
   })
 })
