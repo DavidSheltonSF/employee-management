@@ -1,4 +1,4 @@
-export interface EmployeeData {
+export type EmployeeData = {
   name: string
   lastName: string
   email: string
