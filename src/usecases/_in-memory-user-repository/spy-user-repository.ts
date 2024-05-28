@@ -42,20 +42,13 @@ export class SpyUserRepository implements UserRepository {
   }
 
   async update (email: string, userData: UserData | UserDataWithoutEmail):Promise<void>{
-    const user = await this.findUserByEmail(email);
 
-    if (user){
-      this.updateParams['email'] = email;
-      this.updateParams['userData'] = userData;
-
-    }
+    this.updateParams['email'] = email;
+    this.updateParams['userData'] = userData;
   }
 
   async delete (email: string): Promise<void> {
-    const user = await this.findUserByEmail(email);
-
-    if (user){
-      this.deleteParams['email'] = email;
-    }
+    
+    this.deleteParams['email'] = email;
   }
 }
