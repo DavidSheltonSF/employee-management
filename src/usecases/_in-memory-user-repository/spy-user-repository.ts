@@ -54,7 +54,7 @@ export class SpyUserRepository implements UserRepository {
     const user = await this.findUserByEmail(email);
 
     if (user){
-      this.deleteParams['email'] = 'email';
+      this.deleteParams['email'] = email;
     }
   }
 }
