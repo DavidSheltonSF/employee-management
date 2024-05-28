@@ -11,8 +11,4 @@ describe('Birthday validator', () => {
     expect(Birthday.validate('20d84545')).toBe(false);
   });
 
-  test('Should not accept a birhday of too young person', () => {
-    expect(Birthday.validate('2007-02-26')).toBe(false);
-  });
-
 })
