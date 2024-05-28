@@ -25,11 +25,20 @@ describe('AlterUserRole tester', () => {
     const spyUserRepository = new SpyUserRepository(fakeDataBase);
     const alterUserRole = new AlterUserRole(spyUserRepository);
     
-    const response = await alterUserRole.alterUserRole('maria@bugmail.com', 'viwer');
+    const response = await alterUserRole
+    .alterUserRole(fakeDataBase[1].email, 'viwer');
 
     // Check if response is valid
     expect(response).toEqual(right(true));
+
     // Check if paramethers were added to spy correctly
+
+    expect(spyUserRepository.updateParams['email'])
+      .toEqual(fakeDataBase[1].email);
+    
+    expect(spyUserRepository.updateParams['userData'])
+      .toEqual(fakeDataBase[1]);
+
   });
 
   test('Should not alter user with not registred email', async () => {
