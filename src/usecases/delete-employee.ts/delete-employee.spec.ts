@@ -3,6 +3,7 @@ import { SpyEmployeeRepository } from "../_in-memory-employee-repository/spy-emp
 import { DuplicateDataError } from "../_errors/duplicate-data";
 import { left } from "../../shared/either";
 import { TooYoungAgeError } from "../_errors/too-young-age";
+import { NoResultError } from "../_errors/no-result";
 
 
 const fakeDataBase = [
@@ -67,6 +68,13 @@ describe('deleteEmployee validator', () => {
     .toEqual(employToDelete.email);
   });
 
- 
-  
+  test('Should return NoResultError for a not registered email', async () => {
+    const spyEmployeeRepository = new SpyEmployeeRepository(fakeDataBase);
+    const deleteEmployeeUseCase = new DeleteEmployee(spyEmployeeRepository);
+
+    const falseEmail = 'unexistentemail@bugmail.com'
+    const response = await deleteEmployeeUseCase.delete(falseEmail);
+
+    expect(response).toEqual(left(new NoResultError(falseEmail)));
+  })
 })
