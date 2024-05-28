@@ -27,7 +27,6 @@ const fakeDataBase = [
 ]
 
 
-
 describe('deleteEmployee validator', () => {
   const newEmployee = {
     name: 'NewEmployee',
@@ -39,7 +38,6 @@ describe('deleteEmployee validator', () => {
     department: 'administration'
   }
 
-
   test('Should delete Employee correctly', async () => {
     const employToDelete = {
       name: 'Marcos',
@@ -50,7 +48,7 @@ describe('deleteEmployee validator', () => {
       role: 'developer',
       department: 'techlonogy'
     }
-    
+
     const spyEmployeeRepository = new SpyEmployeeRepository(fakeDataBase);
     const deleteEmployeeUseCase = new DeleteEmployee(spyEmployeeRepository);
     
