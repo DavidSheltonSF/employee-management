@@ -3,8 +3,9 @@ import { EmployeeRepository } from "../_ports/employee-repository";
 
 export class SpyEmployeeRepository implements EmployeeRepository {
   Employees: EmployeeData[] = [];
-  addParams: Record<string, EmployeeData> = {}
-  updateParams: Record<string, EmployeeData> = {}
+  addParams: Record<string, EmployeeData> = {};
+  updateParams: Record<string, EmployeeData> = {};
+  deleteParams: Record<string, string> = {};
 
   constructor(Employees: EmployeeData[]){
     this.Employees = Employees;
@@ -44,11 +45,19 @@ export class SpyEmployeeRepository implements EmployeeRepository {
 
   async update (employeeData: EmployeeData):Promise<void>{
     const {email} = employeeData;
-    const Employee = await this.findEmployeeByEmail(email);
+    const employee = await this.findEmployeeByEmail(email);
 
-    if (Employee){
+    if (employee){
       this.updateParams['EmployeeData'] = employeeData;
     }
 
+  }
+
+  async delete(email: string): Promise<void> {
+    const employee = await this.findEmployeeByEmail(email);
+
+    if(employee){
+      this.deleteParams['email'] = email;
+    }
   }
 }
