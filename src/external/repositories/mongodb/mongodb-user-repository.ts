@@ -24,11 +24,18 @@ export class MongodbUserRepository{
 
   async add(user: UserData): Promise<void>{
     const userCollection = mongoHelper.getCollection('users');
-    console.log(userCollection)
     const exists = await this.exists(user.email);
-    console.log(exists)
     if(!exists){
       await userCollection?.insertOne(user);
+    }
+  }
+
+  async delete(email: string): Promise<void>{
+    const userCollection = mongoHelper.getCollection('users');
+    const exists = await this.exists(email);
+
+    if (exists){
+      await userCollection?.deleteOne({email});
     }
   }
 
