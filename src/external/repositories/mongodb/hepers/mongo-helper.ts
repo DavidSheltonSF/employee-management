@@ -1,12 +1,17 @@
-import { MongoClient, Collection} from "mongodb";
+import { MongoClient, Collection, ServerApiVersion } from "mongodb";
+
 
 export class MongoHelper {
   
   private client : null | MongoClient = null
 
-  async connect(uri: string){
-    this.client = await MongoClient.connect(uri)
+  getClient(){
+    return this.client
+  }
 
+  async connect(uri: string){
+    this.client = new MongoClient(uri);
+    await this.client.connect()
   }
 
   async disconnect(): Promise<void>{
@@ -17,7 +22,6 @@ export class MongoHelper {
   }
 
   getCollection(name: string): Collection | null {
-
     if (this.client){
       return this.client.db().collection(name);
     }
@@ -26,9 +30,9 @@ export class MongoHelper {
   }
 
   clearCollection(name: string): void{
-    if (this.client){
-      this.clearCollection(name)
-    }
+    this.client?.db().collection(name).deleteMany({})
   }
 }
+
+export const mongoHelper = new MongoHelper()
 
