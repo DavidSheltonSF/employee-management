@@ -6,7 +6,7 @@ import { mongoHelper } from "./hepers/mongo-helper";
 export class MongodbUserRepository{
   
   async findAllUsers(): Promise<any | null>{
-    const result = mongoHelper.getCollection('users')?.find().toArray();
+    const result = await mongoHelper.getCollection('users')?.find().toArray();
 
     if (result){
       return result
@@ -26,6 +26,7 @@ export class MongodbUserRepository{
     const userCollection = mongoHelper.getCollection('users');
     const exists = await this.exists(user.email);
     if(!exists){
+      console.log(exists)
       await userCollection?.insertOne(user);
     }
   }
