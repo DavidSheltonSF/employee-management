@@ -1,6 +1,5 @@
 import { UserData } from "../../../entities/user/user-data";
 import { UserRepository } from "../../../usecases/_ports/user-repository";
-import { UserDataWithoutEmail } from "../../../usecases/alter-user.ts/interface";
 import { mongoHelper } from "./hepers/mongo-helper";
 
 
@@ -31,7 +30,8 @@ export class MongodbUserRepository{
     }
   }
 
-  async update(email: string, userData: UserDataWithoutEmail): Promise<void>{
+  async update(userData: UserData): Promise<void>{
+    const { email } = userData;
     const userCollection = mongoHelper.getCollection('users');
     const exists = await this.exists(email);
     if (exists){
@@ -42,7 +42,6 @@ export class MongodbUserRepository{
         userRole: userData.userRole
       }});
     }
-      
   }
 
   async delete(email: string): Promise<void>{
