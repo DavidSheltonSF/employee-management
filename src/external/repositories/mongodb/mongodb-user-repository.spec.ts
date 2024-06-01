@@ -75,7 +75,7 @@ describe('MongodbUserRepository validator', () => {
 
     const updatedUser = await repository.findUserByEmail(newUser.email);
 
-    expect(updatedUser.lastName).toEqual('Michael');
+    expect(updatedUser?.lastName).toEqual('Michael');
 
 });
   
@@ -179,7 +179,7 @@ describe('MongodbUserRepository validator', () => {
 
     const user = await repository.findUserByEmail(users[1].email);
     
-    expect(user.email).toEqual(users[1].email);
+    expect(user?.email).toEqual(users[1].email);
   });
   
 
