@@ -5,21 +5,32 @@ import { mongoHelper } from "./hepers/mongo-helper";
 
 export class MongodbUserRepository{
   
-  async findAllUsers(): Promise<any | null>{
-    const result = await mongoHelper.getCollection('users')?.find().toArray();
+  async findAllUsers(): Promise<UserData[]>{
+    const userCollection = await mongoHelper.getCollection('users')?.find().toArray();
 
-    if (result){
+    if (userCollection){
+      const result = userCollection.map((elem) => {
+        const { name, lastName, email, userRole, password} = elem;
+
+         
+        return { name, lastName, email, userRole, password}
+      })
+
       return result
     }
 
-    return null
-
+    return []
   }
 
-  async findUserByEmail(email: string): Promise<any | null> {
+  async findUserByEmail(email: string): Promise<UserData | null> {
     const userCollection = mongoHelper.getCollection('users');
-    const result = await userCollection?.findOne({email});
-    return result;
+    const user = await userCollection?.findOne({email});
+
+    if (user){
+      const {name, lastName, email, userRole, password} = user
+      return {name, lastName, email, userRole, password};
+    }
+    return null
   }
 
   async add(user: UserData): Promise<void>{
