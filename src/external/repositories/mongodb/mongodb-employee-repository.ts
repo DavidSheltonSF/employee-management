@@ -1,6 +1,6 @@
 import { EmployeeData } from "../../../entities/employee/employee-data";
 import { EmployeeRepository } from "../../../usecases/_ports/employee-repository";
-import { mongoHelper } from "./hepers/mongo-helper";
+import { mongoHelper } from "./helpers/mongo-helper";
 
 
 export class MongodbEmployeeRepository implements EmployeeRepository{

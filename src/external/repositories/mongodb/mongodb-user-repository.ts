@@ -1,6 +1,6 @@
 import { UserData } from "../../../entities/user/user-data";
 import { UserRepository } from "../../../usecases/_ports/user-repository";
-import { mongoHelper } from "./hepers/mongo-helper";
+import { mongoHelper } from "./helpers/mongo-helper";
 
 
 export class MongodbUserRepository implements UserRepository{

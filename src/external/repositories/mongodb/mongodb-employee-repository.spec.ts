@@ -1,5 +1,5 @@
 
-import { mongoHelper } from "./hepers/mongo-helper"
+import { mongoHelper } from "./helpers/mongo-helper"
 import { MongodbEmployeeRepository } from "./mongodb-employee-repository";
 import {config} from 'dotenv'
 
