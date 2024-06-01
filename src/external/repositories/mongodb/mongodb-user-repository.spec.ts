@@ -50,6 +50,34 @@ describe('MongodbUserRepository validator', () => {
     }
 
   });
+
+  test('Should update user', async () => {
+
+    const repository = new MongodbUserRepository();
+
+    const newUser = {
+      name: 'Jeronimo',
+      lastName: 'Jero',
+      email: 'jero@bugmail.com',
+      userRole: 'viewer',
+      password: 'jero123'
+    }
+
+    await repository.add(newUser);
+
+    await repository.update(newUser.email, {
+      
+      name: 'Jeronimo',
+      lastName: 'Michael',
+      userRole: 'viewer',
+      password: 'jero123'
+    });
+
+    const updatedUser = await repository.findUserByEmail(newUser.email);
+
+    expect(updatedUser.lastName).toEqual('Michael');
+
+});
   
   test('Should remove a user from the database', async () => {
     const repository = new MongodbUserRepository();
