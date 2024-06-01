@@ -25,37 +25,52 @@ const fakeDataBase = [
 describe('alterUser validator', () => {
 
   test('Should alter User correctly', async () => {
-    const employToAlter = {
+    const userToAlter = {
       name: 'Marcos',
       lastName: 'Jeraldo', 
       email: 'marcos@bugmail.com',
       userRole: 'admin',
-    password: 'marcos123'
+      password: 'marcos123'
     }
 
     const spyUserRepository = new SpyUserRepository(fakeDataBase);
     const alterUserUseCase = new AlterUser(spyUserRepository);
     
-    const {name, lastName, userRole, password} = employToAlter
-    const response = await alterUserUseCase.alter(employToAlter.email, {
-      name, lastName, userRole, password
+    const response = await alterUserUseCase.alter({
+      name: 'Antonio',
+      lastName: 'Jeraldo', 
+      email: 'marcos@bugmail.com',
+      userRole: 'admin',
+      password: 'marcos123'
     });
 
     // Checking if response of the usecase is right
     expect(response.isRight()).toBeTruthy()
 
     // Checking if params were added to the spy correctly
-    expect(spyUserRepository.updateParams['email'])
-    .toEqual(employToAlter.email);
+    expect(spyUserRepository.updateParams['userData'])
+      .toEqual({
+        name: 'Antonio',
+        lastName: 'Jeraldo', 
+        email: 'marcos@bugmail.com',
+        userRole: 'admin',
+        password: 'marcos123'
+      });
   });
 
   test('Should return NoResultError for a not registered email', async () => {
     const spyUserRepository = new SpyUserRepository(fakeDataBase);
     const alterUserUseCase = new AlterUser(spyUserRepository);
 
-    const falseEmail = 'unexistentemail@bugmail.com'
-    const response = await alterUserUseCase.alter(falseEmail, fakeDataBase[0]);
+    const fakeUser = {
+      name: 'Faken',
+      lastName: 'Fekenaldo', 
+      email: 'fake@bugmail.com',
+      userRole: 'admin',
+      password: 'fake123'
+    }
+    const response = await alterUserUseCase.alter(fakeUser);
 
-    expect(response).toEqual(left(new NoResultError(falseEmail)));
+    expect(response).toEqual(left(new NoResultError(fakeUser.email)));
   })
 })
