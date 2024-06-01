@@ -1,11 +1,10 @@
 import { EmployeeData } from "../../entities/employee/employee-data";
 import { EmployeeRepository } from "../_ports/employee-repository";
-import { EmployeeDataWithoutEmail } from "../alter-employee/interface";
 
 export class SpyEmployeeRepository implements EmployeeRepository {
   Employees: EmployeeData[] = [];
   addParams: Record<string, EmployeeData> = {};
-  updateParams: Record<string, string | EmployeeData | EmployeeDataWithoutEmail> = {};
+  updateParams: Record<string, string | EmployeeData | EmployeeData> = {};
   deleteParams: Record<string, string> = {};
 
   constructor(Employees: EmployeeData[]){
@@ -44,11 +43,11 @@ export class SpyEmployeeRepository implements EmployeeRepository {
 
   }
 
-  async update (email: string, employeeData: EmployeeData | EmployeeDataWithoutEmail):Promise<void>{
+  async update (employeeData: EmployeeData):Promise<void>{
+    const { email } = employeeData;
     const employee = await this.findEmployeeByEmail(email);
 
     if (employee){
-      this.updateParams['email'] = email;
       this.updateParams['employeeData'] = employeeData;
 
     }
