@@ -1,9 +1,9 @@
-import { EmployeeDataWithoutEmail } from "./interface";
 import { InvalidEmailError } from "../../entities/errors";
 import { NoResultError } from "../_errors/no-result";
 import { Either } from "../../shared/either";
+import { EmployeeData } from "../../entities/employee/employee-data";
 
 
 
 export type AlterEmployeeResponse = Either<InvalidEmailError | 
-NoResultError, EmployeeDataWithoutEmail>
+NoResultError, EmployeeData>
