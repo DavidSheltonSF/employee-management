@@ -122,6 +122,37 @@ describe('MongodbUserRepository validator', () => {
     expect(allUsers[0].email).toEqual(users[0].email);
     expect(allUsers[1].email).toEqual(users[1].email);
   });
+
+  test('Should return a single user by email from the database', async () => {
+
+    const repository = new MongodbUserRepository();
+
+    const users = [
+      {
+        name: 'Marta',
+        lastName: 'Jon',
+        email: 'mart@bugmail.com',
+        userRole: 'viewer',
+        password: 'marta123'
+      },
+      {
+        name: 'Carlos',
+        lastName: 'Jon',
+        email: 'carlos@bugmail.com',
+        userRole: 'viewer',
+        password: 'carlos123'
+      }
+    ]
+
+    // Adding new users to database
+    
+    await repository.add(users[0])
+    await repository.add(users[1])
+
+    const user = await repository.findUserByEmail(users[1].email);
+    
+    expect(user.email).toEqual(users[1].email);
+  });
   
 
 })
