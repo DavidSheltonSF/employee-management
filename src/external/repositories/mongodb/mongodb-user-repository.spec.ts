@@ -65,10 +65,10 @@ describe('MongodbUserRepository validator', () => {
 
     await repository.add(newUser);
 
-    await repository.update(newUser.email, {
-      
+    await repository.update({
       name: 'Jeronimo',
       lastName: 'Michael',
+      email: 'jero@bugmail.com',
       userRole: 'viewer',
       password: 'jero123'
     });
