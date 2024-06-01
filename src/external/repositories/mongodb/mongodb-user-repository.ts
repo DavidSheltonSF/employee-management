@@ -3,7 +3,7 @@ import { UserRepository } from "../../../usecases/_ports/user-repository";
 import { mongoHelper } from "./hepers/mongo-helper";
 
 
-export class MongodbUserRepository{
+export class MongodbUserRepository implements UserRepository{
   
   async findAllUsers(): Promise<UserData[]>{
     const userCollection = await mongoHelper.getCollection('users')?.find().toArray();
