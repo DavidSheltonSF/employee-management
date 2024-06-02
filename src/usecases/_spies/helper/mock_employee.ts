@@ -1,7 +1,7 @@
 import { EmployeeData } from "../../../entities/employee/employee-data";
 import {faker} from "@faker-js/faker"
 
-export const mock_user = (): EmployeeData => {
+export const mock_employee = (): EmployeeData => {
 
   const name = faker.person.firstName();
   const lastName = faker.person.lastName();
