@@ -15,8 +15,8 @@ export const unprocessableEntity = (error: Error): HttpResponse => ({
   body: error.message
 });
 
-export const serverRequest = (error: Error): HttpResponse => ({
+export const serverRequest = (reason: string): HttpResponse => ({
   statusCode: 500,
-  body: error.message
+  body: reason
 })
 
