@@ -144,8 +144,6 @@ describe('MongodbUserRepository validator', () => {
     await repository.add(users[1])
 
     const allUsers = await repository.findAllUsers();
-
-    console.log(allUsers);
     
     expect(allUsers[0].email).toEqual(users[0].email);
     expect(allUsers[1].email).toEqual(users[1].email);
