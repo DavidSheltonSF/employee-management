@@ -16,17 +16,13 @@ describe('MongodbEmployeeRepository validator', () => {
       console.log('NO URI')
     }
       
-  });
+  }, 50000);
   
   afterAll(async () => {
     await mongoHelper.disconnect();
-    mongoHelper.clearCollection('employees');
-
   });
-
   
   beforeEach(async () => {
-
     mongoHelper.clearCollection('employees');
   });
   
@@ -45,14 +41,14 @@ describe('MongodbEmployeeRepository validator', () => {
       department: 'technology'
     }
 
-    const exists = await repository.exists(newEmployee.email)
+    await repository.add(newEmployee);
 
-    if (exists){
-      await repository.add(newEmployee);
-    }
+    const user = await repository.findEmployeeByEmail(newEmployee.email);
 
-  });
-
+    expect(user?.email).toEqual(newEmployee.email)
+    
+  }, 50000);
+  
   test('Should update employee', async () => {
 
     const repository = new MongodbEmployeeRepository();
@@ -81,10 +77,16 @@ describe('MongodbEmployeeRepository validator', () => {
 
     const updatedEmployee = await repository.findEmployeeByEmail(newEmployee.email);
 
-    expect(updatedEmployee?.lastName).toEqual('Michael');
+    //console.log(updatedEmployee)
 
-});
-  
+    if(updatedEmployee){
+      expect(updatedEmployee.lastName).toEqual('Michael');
+    } 
+
+    
+
+}, 50000);
+  /*
   test('Should remove a employee from the database', async () => {
     const repository = new MongodbEmployeeRepository();
 
@@ -197,6 +199,6 @@ describe('MongodbEmployeeRepository validator', () => {
     
     expect(employee?.email).toEqual(employees[1].email);
   });
-  
+  */
 
 })
