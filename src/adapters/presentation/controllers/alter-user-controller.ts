@@ -1,6 +1,6 @@
 import { AlterUserInterface as AlterUser } from "../../../usecases/alter-user.ts/interface";
 import { MissingRequestBodyError } from "./_errors/missing-request-body-error";
-import { badRequest, ok, unprocessableEntity, serverRequest } from "./_helpers/http-helper";
+import { badRequest, ok, unprocessableEntity, serverError } from "./_helpers/http-helper";
 import { HttpRequest, HttpResponse } from "./_ports/http";
 import { MissingParamError } from "./_errors/missing-param-error";
 import { AlterUserResponse } from "../../../usecases/alter-user.ts/response";
@@ -56,7 +56,7 @@ export class AlterUserController {
 
     }catch(err){
       console.log(err);
-      return serverRequest('internal');
+      return serverError('internal');
     }
   }
 }

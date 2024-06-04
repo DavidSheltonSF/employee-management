@@ -1,6 +1,6 @@
 import { RegisterUserInterface as RegisterUser } from "../../../usecases/register-user/interface";
 import { MissingRequestBodyError } from "./_errors/missing-request-body-error";
-import { badRequest, ok, unprocessableEntity, serverRequest } from "./_helpers/http-helper";
+import { badRequest, ok, unprocessableEntity, serverError } from "./_helpers/http-helper";
 import { HttpRequest, HttpResponse } from "./_ports/http";
 import { MissingParamError } from "./_errors/missing-param-error";
 import { RegisterUserResponse } from "../../../usecases/register-user/response";
@@ -56,7 +56,7 @@ export class RegisterUserController {
 
     }catch(err){
       console.log(err);
-      return serverRequest('internal');
+      return serverError('internal');
     }
   }
 }
