@@ -10,6 +10,11 @@ export const badRequest = (error: Error): HttpResponse => ({
   body: error.message
 });
 
+export const notFound = (error: Error): HttpResponse => ({
+  statusCode: 404,
+  body: error.message
+})
+
 export const unprocessableEntity = (error: Error): HttpResponse => ({
   statusCode: 422,
   body: error.message
