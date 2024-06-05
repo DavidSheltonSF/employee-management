@@ -1,8 +1,10 @@
 import { FindUserInterface as FindUser } from "../../../usecases/find-user/interface";
-import { badRequest, ok, unprocessableEntity, serverError } from "./_helpers/http-helper";
+import { badRequest, ok, unprocessableEntity, serverError, notFound } from "./_helpers/http-helper";
 import { HttpRequest, HttpResponse } from "./_ports/http";
 import { MissingParamError } from "./_errors/missing-param-error";
 import { FindUserResponse } from "../../../usecases/find-user/response";
+import { InvalidEmailError } from "../../../entities/errors";
+import { NoResultError } from "../../../usecases/_errors/no-result";
 
 export class FindUserController {
   private readonly findUser: FindUser
@@ -27,7 +29,15 @@ export class FindUserController {
         const response: FindUserResponse = await this.findUser.byEmail(email);
 
         if(response.isLeft()){
-          return unprocessableEntity(response.value)
+
+          if(response.value instanceof InvalidEmailError){
+            return unprocessableEntity(response.value);
+          }
+
+          if(response.value instanceof NoResultError){
+            return notFound(response.value);
+          }
+          
         }
 
         return ok(response);
