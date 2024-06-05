@@ -1,9 +1,9 @@
-import { AlterUserInterface as AlterUser } from "../../../usecases/alter-user.ts/interface";
+import { AlterUserInterface as AlterUser } from "../../../usecases/alter-user/interface";
 import { MissingRequestBodyError } from "./_errors/missing-request-body-error";
 import { badRequest, ok, unprocessableEntity, serverError } from "./_helpers/http-helper";
 import { HttpRequest, HttpResponse } from "./_ports/http";
 import { MissingParamError } from "./_errors/missing-param-error";
-import { AlterUserResponse } from "../../../usecases/alter-user.ts/response";
+import { AlterUserResponse } from "../../../usecases/alter-user/response";
 
 export class AlterUserController {
   private readonly alterUser: AlterUser

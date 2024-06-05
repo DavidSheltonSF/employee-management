@@ -1,8 +1,8 @@
 import { right, left } from "../../shared/either";
 import { UserData } from "../../entities/user/user-data";
 import { UserRepository } from "../_ports/user-repository";
-import { AlterUserInterface as AlterUser } from "../alter-user.ts/interface";
-import { AlterUserResponse } from "../alter-user.ts/response";
+import { AlterUserInterface as AlterUser } from "../alter-user/interface";
+import { AlterUserResponse } from "../alter-user/response";
 import { mock_user } from "./helper/mock_user";
 import { NoResultError } from "../_errors/no-result";
 
