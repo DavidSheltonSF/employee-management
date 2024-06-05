@@ -21,6 +21,15 @@ const fakeDataBase = [
     role: 'Manager',
     department: 'Administration'
   },
+  {
+    name: 'José',
+    lastName: 'jo', 
+    email: 'jose@bugmail.com',
+    birthday: '2000-02-05',
+    gender: 'male',
+    role: 'developer',
+    department: 'technology'
+  }
 ]
 
 describe('AlterEmployeeController validator', () => {
@@ -33,14 +42,18 @@ describe('AlterEmployeeController validator', () => {
     const httpRequest = {
       body: {
         name: 'José',
-        lastName: 'jo', 
+        lastName: 'João', 
         email: 'jose@bugmail.com',
-        employeeRole: 'manager',
-        password: 'jose123'
+        birthday: '2000-02-05',
+        gender: 'male',
+        role: 'developer',
+        department: 'technology'
       }
     }
 
-    alterEmployeeController.handle(httpRequest);
+    const response = await alterEmployeeController.handle(httpRequest);
+
+    expect(response.statusCode).toEqual(200);
 
     expect(alterEmployeeUseCase.alterParam['employeeData']).toEqual(httpRequest.body)
 
