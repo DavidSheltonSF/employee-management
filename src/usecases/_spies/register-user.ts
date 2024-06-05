@@ -31,8 +31,6 @@ export class RegisterUserSpy implements RegisterUser {
       return left(new DuplicateDataError(user.email.value))
     }
 
-    await this.userRepository.add(userData);
-
     return right(mock_user());
   }
 }

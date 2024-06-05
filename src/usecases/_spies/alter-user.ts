@@ -25,8 +25,6 @@ export class AlterUserSpy implements AlterUser {
       return left(new NoResultError(email))
     }
 
-    await this.userRepository.update(userData);
-
     return right(mock_user());
 
   }

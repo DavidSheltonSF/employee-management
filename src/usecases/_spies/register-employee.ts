@@ -31,8 +31,6 @@ export class RegisterEmployeeSpy implements RegisterEmployee {
       return left(new DuplicateDataError(employee.email.value))
     }
 
-    await this.employeeRepository.add(employeeData);
-
     return right(mock_employee());
   }
 }

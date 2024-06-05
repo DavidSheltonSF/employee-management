@@ -25,8 +25,6 @@ export class AlterEmployeeSpy implements AlterEmployee {
       return left(new NoResultError(email))
     }
 
-    await this.employeeRepository.update(employeeData);
-
     return right(mock_employee());
 
   }
