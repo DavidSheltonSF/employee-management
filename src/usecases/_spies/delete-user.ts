@@ -1,7 +1,7 @@
 import { right, left } from "../../shared/either";
 import { UserRepository } from "../_ports/user-repository";
-import { DeleteUserInterface as DeleteUser } from "../delete-user.ts/interface";
-import { DeleteUserResponse } from "../delete-user.ts/response";
+import { DeleteUserInterface as DeleteUser } from "../delete-user/interface";
+import { DeleteUserResponse } from "../delete-user/response";
 import { mock_user } from "./helper/mock_user";
 import { NoResultError } from "../_errors/no-result";
 
