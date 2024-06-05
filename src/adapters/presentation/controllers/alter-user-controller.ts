@@ -1,9 +1,11 @@
 import { AlterUserInterface as AlterUser } from "../../../usecases/alter-user/interface";
 import { MissingRequestBodyError } from "./_errors/missing-request-body-error";
-import { badRequest, ok, unprocessableEntity, serverError } from "./_helpers/http-helper";
+import { badRequest, ok, unprocessableEntity, serverError, notFound } from "./_helpers/http-helper";
 import { HttpRequest, HttpResponse } from "./_ports/http";
 import { MissingParamError } from "./_errors/missing-param-error";
 import { AlterUserResponse } from "../../../usecases/alter-user/response";
+import { NoResultError } from "../../../usecases/_errors/no-result";
+import { InvalidEmailError } from "../../../entities/errors";
 
 export class AlterUserController {
   private readonly alterUser: AlterUser
@@ -46,7 +48,15 @@ export class AlterUserController {
         );
 
         if(response.isLeft()){
-          return unprocessableEntity(response.value)
+
+          if(response.value instanceof InvalidEmailError){
+            return unprocessableEntity(response.value);
+          }
+
+          if(response.value instanceof NoResultError){
+            return notFound(response.value);
+          }
+          
         }
 
         return ok(response);
