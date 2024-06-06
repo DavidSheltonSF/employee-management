@@ -4,6 +4,10 @@ describe('Name validator', ()=> {
   test('Should accept valid name (valid classes)', () => {
     expect(Name.validate('David')).toBe(true);
   });
+
+  test('Should accept valid  name with accentuation (valid classes)', () => {
+    expect(Name.validate('José')).toBe(true);
+  });
   
   test('Should not accept name with any special characters', () => {
     expect(Name.validate('David@')).toBe(false);
