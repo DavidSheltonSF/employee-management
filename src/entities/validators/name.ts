@@ -18,7 +18,7 @@ export class Name {
       return false;
     }
 
-    const tester = /^[A-Za-z\s]+$/
+    const tester = /^[A-Za-zÀ-ÖØ-öø-ÿ]+$/
     if (!tester.test(name)){
       return false;
     }
