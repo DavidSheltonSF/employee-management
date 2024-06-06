@@ -5,6 +5,7 @@ import { AlterEmployeeInterface as AlterEmployee } from "../alter-employee/inter
 import { AlterEmployeeResponse } from "../alter-employee/response";
 import { mock_employee } from "./helper/mock_employee";
 import { NoResultError } from "../_errors/no-result";
+import { Employee } from "../../entities/employee/employee";
 
 export class AlterEmployeeSpy implements AlterEmployee {
   private readonly employeeRepository: EmployeeRepository
@@ -15,6 +16,12 @@ export class AlterEmployeeSpy implements AlterEmployee {
   }
 
   async alter(employeeData: EmployeeData): Promise<AlterEmployeeResponse> {
+
+    const employeeOrError = Employee.create(employeeData);
+
+    if (employeeOrError.isLeft()){
+      return left(employeeOrError.value)
+    }
 
     this.alterParam['employeeData'] = employeeData;
 
