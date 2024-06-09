@@ -15,6 +15,7 @@ describe('Empoyee validator', () => {
     
     const employeeOrError = Employee.create(employeeData)
 
-    expect(employeeOrError).toEqual(Employee.create(employeeData));
+    expect(employeeOrError.isRight()).toBe(true);
+
   })
 })

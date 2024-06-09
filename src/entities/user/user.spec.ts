@@ -13,7 +13,7 @@ describe('User Validator', () => {
       password: 'david123456'
     }
     const userOrError = User.create(userData);
-    expect(userOrError).toEqual(User.create(userData));
+    expect(userOrError.isRight()).toBe(true);
   });
 
   test('Should not create user with invalid name', ()=> {
