@@ -20,13 +20,11 @@ describe('MongodbUserRepository validator', () => {
   
   afterAll(async () => {
     await mongoHelper.disconnect();
-    mongoHelper.clearCollection('users');
 
   });
 
   
   beforeEach(async () => {
-
     mongoHelper.clearCollection('users');
   });
   
