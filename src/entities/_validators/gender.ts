@@ -1,5 +1,5 @@
 import { Either, left, right } from "../../shared/either";
-import { InvalidGenderError } from "../errors/invalid-gender";
+import { InvalidGenderError } from "../_errors/invalid-gender";
 
 enum GenderEnum{
   M = 'male',

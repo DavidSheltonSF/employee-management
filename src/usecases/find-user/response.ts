@@ -1,4 +1,4 @@
-import { InvalidEmailError } from "../../entities/errors";
+import { InvalidEmailError } from "../../entities/_errors";
 import { NoResultError } from "../_errors/no-result";
 import { Either } from "../../shared/either";
 import { UserData } from "../../entities/user/user-data";

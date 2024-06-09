@@ -1,4 +1,4 @@
-import { InvalidEmailError, InvalidNameError, InvalidPasswordError, InvalidUserRoleError } from "../../entities/errors";
+import { InvalidEmailError, InvalidNameError, InvalidPasswordError, InvalidUserRoleError } from "../../entities/_errors";
 import { User } from "../../entities/user/user";
 import { UserData } from "../../entities/user/user-data";
 import { Either, left, right } from "../../shared/either";

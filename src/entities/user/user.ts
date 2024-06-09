@@ -3,9 +3,9 @@ import {
   InvalidNameError, 
   InvalidEmailError, 
   InvalidPasswordError, 
-  InvalidUserRoleError } from "../errors";
+  InvalidUserRoleError } from "../_errors";
 import { 
-  Name, Email, Password, UserRole } from "../validators";
+  Name, Email, Password, UserRole } from "../_validators";
 import { Either, left, right } from "../../shared/either";
 
 export class User {

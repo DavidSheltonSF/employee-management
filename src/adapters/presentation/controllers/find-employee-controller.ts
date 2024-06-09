@@ -3,7 +3,7 @@ import { badRequest, ok, unprocessableEntity, serverError, notFound } from "./_h
 import { HttpRequest, HttpResponse } from "./_ports/http";
 import { MissingParamError } from "./_errors/missing-param-error";
 import { FindEmployeeResponse } from "../../../usecases/find-employee/response";
-import { InvalidEmailError } from "../../../entities/errors";
+import { InvalidEmailError } from "../../../entities/_errors";
 import { NoResultError } from "../../../usecases/_errors/no-result";
 
 export class FindEmployeeController {

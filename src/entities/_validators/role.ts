@@ -1,5 +1,5 @@
 import { Either, left, right } from "../../shared/either";
-import { InvalidRoleError } from "../errors/invalid-role";
+import { InvalidRoleError } from "../_errors/invalid-role";
 
 
 export class Role{

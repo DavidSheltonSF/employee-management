@@ -1,4 +1,4 @@
-import { Birthday, Department } from "../validators";
+import { Birthday, Department } from "../_validators";
 import { Employee } from "./employee";
 
 describe('Empoyee validator', () => {

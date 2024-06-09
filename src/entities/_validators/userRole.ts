@@ -1,5 +1,5 @@
 import { Either, left, right } from "../../shared/either";
-import { InvalidUserRoleError } from "../errors/invalid-userRole";
+import { InvalidUserRoleError } from "../_errors/invalid-userRole";
 
 enum UserRoleEnum{
   ADMIN = 'admin',

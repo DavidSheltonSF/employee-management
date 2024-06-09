@@ -1,5 +1,5 @@
 import { Either, left, right } from "../../shared/either";
-import { InvalidBirthdayError } from "../errors/invalid-birthday";
+import { InvalidBirthdayError } from "../_errors/invalid-birthday";
 
 export class Birthday{
   private readonly birthday: string;

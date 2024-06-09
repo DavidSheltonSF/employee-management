@@ -5,7 +5,7 @@ import { HttpRequest, HttpResponse } from "./_ports/http";
 import { MissingParamError } from "./_errors/missing-param-error";
 import { AlterEmployeeResponse } from "../../../usecases/alter-employee/response";
 import { NoResultError } from "../../../usecases/_errors/no-result";
-import { InvalidEmailError } from "../../../entities/errors";
+import { InvalidEmailError } from "../../../entities/_errors";
 
 export class AlterEmployeeController {
   private readonly alterEmployee: AlterEmployee

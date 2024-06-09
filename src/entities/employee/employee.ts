@@ -1,12 +1,12 @@
 import { EmployeeData } from "./employee-data";
-import { Email, Birthday, Department, Gender, Name, Role } from "../validators";
+import { Email, Birthday, Department, Gender, Name, Role } from "../_validators";
 import { Either, left, right } from "../../shared/either";
 import { 
   InvalidNameError, 
   InvalidBirthdayError, 
   InvalidEmailError, 
   InvalidDepartmentError, 
-  InvalidGenderError, InvalidRoleError } from "../errors";
+  InvalidGenderError, InvalidRoleError } from "../_errors";
 
 
 export class Employee {

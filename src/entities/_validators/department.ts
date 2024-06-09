@@ -1,5 +1,5 @@
 import { Either, left, right } from "../../shared/either";
-import { InvalidDepartmentError } from "../errors/invalid-department";
+import { InvalidDepartmentError } from "../_errors/invalid-department";
 
 export class Department {
   private readonly department: string

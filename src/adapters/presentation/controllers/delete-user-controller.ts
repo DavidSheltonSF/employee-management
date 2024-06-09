@@ -4,7 +4,7 @@ import { badRequest, ok, unprocessableEntity, serverError, notFound } from "./_h
 import { HttpRequest, HttpResponse } from "./_ports/http";
 import { MissingParamError } from "./_errors/missing-param-error";
 import { DeleteUserResponse } from "../../../usecases/delete-user/response";
-import { InvalidEmailError } from "../../../entities/errors";
+import { InvalidEmailError } from "../../../entities/_errors";
 import { NoResultError } from "../../../usecases/_errors/no-result";
 
 export class DeleteUserController {

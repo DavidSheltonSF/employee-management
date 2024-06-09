@@ -1,6 +1,6 @@
 import { User } from "./user";
 import { left } from "../../shared/either";
-import { InvalidNameError, InvalidEmailError, InvalidGenderError } from "../errors";
+import { InvalidNameError, InvalidEmailError, InvalidGenderError } from "../_errors";
 
 describe('User Validator', () => {
   test('Should create valid user (valid classes)', () =>{

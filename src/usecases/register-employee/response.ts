@@ -1,5 +1,5 @@
 import { EmployeeData } from "../../entities/employee/employee-data";
-import { InvalidBirthdayError, InvalidDepartmentError, InvalidEmailError, InvalidGenderError, InvalidNameError, InvalidRoleError } from "../../entities/errors";
+import { InvalidBirthdayError, InvalidDepartmentError, InvalidEmailError, InvalidGenderError, InvalidNameError, InvalidRoleError } from "../../entities/_errors";
 import { Either } from "../../shared/either";
 
 
