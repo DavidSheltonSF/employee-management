@@ -7,7 +7,7 @@ describe('Department Validator', () => {
 
     const departmentData = {
       name: 'David',
-      managerId: 'm1245324fdsf4sddsca',
+      managerEmail: 'david@bugmail.com',
     }
     const departmentOrError = Department.create(departmentData);
     expect(departmentOrError.isRight()).toBe(true);
@@ -17,7 +17,7 @@ describe('Department Validator', () => {
 
     const departmentData = {
       name: 'invalid@Department$%¨$¨%@',
-      managerId: 'm1245324fdsf4sddsca',
+      managerEmail: 'david@bugmail.com',
     }
 
     const departmentOrError = Department.create(departmentData);
