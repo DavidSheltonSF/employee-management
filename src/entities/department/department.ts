@@ -1,19 +1,21 @@
 import { DepartmentData } from "./department-data";
 import { 
+  InvalidEmailError,
   InvalidNameError, 
 } from "../_errors";
 import { 
+  Email,
   Name, } from "../_validators";
 import { Either, left, right } from "../../shared/either";
 
 export class Department {
   name: Name;
-  managerId: string;
+  managerEmail: Email;
 
   private constructor(
-    name: Name, managerId: string){
+    name: Name, managerEmail: Email){
     this.name = name;
-    this.managerId = managerId;
+    this.managerEmail = managerEmail;
 
   }
 
@@ -25,12 +27,18 @@ export class Department {
       return left(nameOrError.value);
     }
 
-    const name = nameOrError.value
-    const managerId = departmentData.managerId
+    const emailOrError: Either<InvalidEmailError, Email> = Email.
+    create(departmentData.managerEmail);
+  
+    if(emailOrError.isLeft()){
+      return left(emailOrError.value);
+    }
 
+    const name = nameOrError.value;
+    const managerEmail = emailOrError.value;
     return right(new Department(
       name,
-      managerId,
+      managerEmail,
     ));
   }
 }
