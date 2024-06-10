@@ -2,55 +2,54 @@ import { SpyDepartmentRepository } from "./spy-department-repository";
 
 const fakeDepartmentsDatabase = [
   {
-    name: 'Marcos',
+    name: 'technology',
     managerEmail: 'marcos@bugmail.com', 
   },
   {
-    name: 'Maria',
+    name: 'administration',
     managerEmail: 'maria@bugmail.com', 
   },
 ]
 
-const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
 
+//
 describe('SpyDepartmentRepository validator', () => {
    test('Should return all departments in the repository', async () => {
-    expect(await spyDepartmentRepository.findAllDepartments()).toEqual([
-      {
-        name: 'Marcos',
-        managerEmail: 'marcos@bugmail.com', 
-      },
-      {
-        name: 'Maria',
-        managerEmail: 'maria@bugmail.com', 
-      },
-    ])
+    const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
+
+    const departments = await spyDepartmentRepository.findAllDepartments();
+
+    expect(departments).toEqual(fakeDepartmentsDatabase)
 
   });
-
+  
   test('Should return department by email', async () => {
-
+    const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
     expect(await spyDepartmentRepository.findDepartmentByManagerEmail(fakeDepartmentsDatabase[1].managerEmail))
       .toEqual(fakeDepartmentsDatabase[1]);
   });
-
+  
   test('Should return null if email was not found', async () => {
-
+    const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
     expect(await spyDepartmentRepository.findDepartmentByManagerEmail('thisEmailDoesNotExists@bugmai.com'))
       .toBe(null);
   });
-
+  
   test('Should return true for existent department', async () => {
-    expect(await spyDepartmentRepository.exists(fakeDepartmentsDatabase[1].managerEmail))
+    const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
+
+    expect(await spyDepartmentRepository.exists(fakeDepartmentsDatabase[1].name))
       .toBe(true);
   });
-
+  
   test('Should return false for unexistent department', async () => {
+    const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
     expect(await spyDepartmentRepository.exists('thisEmailDoesNotExists@bugmai.com'))
       .toBe(false);
   });
-
+  
   test('Should add new department to fake database', async () => {
+    const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
     const newDepartment = {
       name: 'Jeraldo',
       managerEmail: 'montes@bugmail.com', 
@@ -58,8 +57,7 @@ describe('SpyDepartmentRepository validator', () => {
 
     await spyDepartmentRepository.add(newDepartment);
 
-    expect(await spyDepartmentRepository.exists(newDepartment.managerEmail))
+    expect(await spyDepartmentRepository.exists(newDepartment.name))
       .toBe(true);
   });
-
 })
