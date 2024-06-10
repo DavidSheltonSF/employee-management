@@ -6,5 +6,5 @@ export interface DepartmentRepository {
   add: (departmentData: DepartmentData) => Promise<void>
   update: (departmentData: DepartmentData | DepartmentData) => Promise<void>
   delete: (email: string) => Promise<void>
-  exists: (email: string) => Promise<boolean>
+  exists: (name: string) => Promise<boolean>
 }

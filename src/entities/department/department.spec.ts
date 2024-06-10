@@ -13,6 +13,15 @@ describe('Department Validator', () => {
     expect(departmentOrError.isRight()).toBe(true);
   });
 
+  test('Should create valid department even if it has no manager Email', () =>{
+
+    const departmentData = {
+      name: 'David',
+    }
+    const departmentOrError = Department.create(departmentData);
+    expect(departmentOrError.isRight()).toBe(true);
+  });
+
   test('Should not create department with invalid name', ()=> {
 
     const departmentData = {

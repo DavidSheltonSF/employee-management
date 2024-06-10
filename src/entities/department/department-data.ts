@@ -1,4 +1,4 @@
 export type DepartmentData = {
   name: string
-  managerEmail: string
+  managerEmail?: string
 }
