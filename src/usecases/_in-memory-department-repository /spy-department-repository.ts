@@ -15,6 +15,16 @@ export class SpyDepartmentRepository implements DepartmentRepository {
     return this.departments;
   }
 
+  async findDepartmentByName (name: string): Promise<DepartmentData| null> {
+    var u: DepartmentData
+    for (u of this.departments) {
+      if (u.name === name) {
+        return u
+      }
+    }
+    return null
+  }
+
   async findDepartmentByManagerEmail (managerEmail: string): Promise<DepartmentData| null> {
     var u: DepartmentData
     for (u of this.departments) {
@@ -25,8 +35,8 @@ export class SpyDepartmentRepository implements DepartmentRepository {
     return null
   }
 
-  async exists (managerEmail: string): Promise<boolean> {
-    if (await this.findDepartmentByManagerEmail(managerEmail) === null){
+  async exists (name: string): Promise<boolean> {
+    if (await this.findDepartmentByName(name) === null){
       return false;
     }
 
