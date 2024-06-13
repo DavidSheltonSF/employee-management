@@ -25,16 +25,6 @@ export class SpyDepartmentRepository implements DepartmentRepository {
     return null
   }
 
-  async findDepartmentByManagerEmail (managerEmail: string): Promise<DepartmentData| null> {
-    var u: DepartmentData
-    for (u of this.departments) {
-      if (u.managerEmail === managerEmail) {
-        return u
-      }
-    }
-    return null
-  }
-
   async exists (name: string): Promise<boolean> {
     if (await this.findDepartmentByName(name) === null){
       return false;
