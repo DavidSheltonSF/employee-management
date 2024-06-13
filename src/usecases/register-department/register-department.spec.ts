@@ -34,21 +34,32 @@ const fakeEmployeeDataBase = [
     birthday: '2000-05-11',
     gender: 'female',
     role: 'Manager',
+    department: 'administration'
+  },
+  {
+    name: 'Antônia',
+    lastName: 'Marta', 
+    email: 'tonia@bugmail.com',
+    birthday: '2000-05-11',
+    gender: 'female',
+    role: 'Manager',
     department: 'technology'
   },
 ]
 
-const newDepartment = {
-  name: 'NewDepartment',
-  managerEmail: 'maria@bugmail.com',
-}
 
 describe('RegisterDepartment validator', () => {
   
   test('Should Register department correctly', async () => {
+
     const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
     const spyEmployeeRepository = new SpyEmployeeRepository(fakeEmployeeDataBase);
     const registerDepartmentUseCase = new RegisterDepartment(spyDepartmentRepository, spyEmployeeRepository);
+    
+    const newDepartment = {
+      name: 'NewDepartment',
+      managerEmail: 'maria@bugmail.com',
+    }
     
     const response = await registerDepartmentUseCase.register(newDepartment);
     const department = await spyDepartmentRepository.findDepartmentByManagerEmail(newDepartment.managerEmail);
@@ -67,11 +78,11 @@ describe('RegisterDepartment validator', () => {
     .toEqual(newDepartment);
     
   });
-  /*
+  
   test('Should Register department with no manager email', async () => {
 
     const noManagerDepartment = {
-      name: 'NewDepartment',
+      name: 'noManagerDepartment',
     }
 
     const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
@@ -79,55 +90,35 @@ describe('RegisterDepartment validator', () => {
     const registerDepartmentUseCase = new RegisterDepartment(spyDepartmentRepository, spyEmployeeRepository);
     
     const response = await registerDepartmentUseCase.register(noManagerDepartment);
-    const department = await spyDepartmentRepository.findDepartmentByManagerEmail(newDepartment.managerEmail);
-    expect(department?.managerEmail)
-      .toEqual(newDepartment.managerEmail);
+    const department = await spyDepartmentRepository.findDepartmentByName(noManagerDepartment.name);
 
     // Checking if response of the usecase is right
     expect(response.isRight()).toBeTruthy()
 
     // Checking if department was registered in repository
-    expect(await spyDepartmentRepository.findDepartmentByName(newDepartment.name))
-      .toEqual(newDepartment);
+    expect(department?.name)
+      .toEqual(noManagerDepartment.name);
 
-      expect(spyDepartmentRepository.addParams['departmentData'])
-      .toEqual(newDepartment);
+    expect(spyDepartmentRepository.addParams['departmentData'])
+    .toEqual(noManagerDepartment);
   });
   
-  /*
+  
   test('Should not register department that already exists', async () => {
     const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
     const spyEmployeeRepository = new SpyEmployeeRepository(fakeEmployeeDataBase);
     const registerDepartmentUseCase = new RegisterDepartment(spyDepartmentRepository, spyEmployeeRepository);
 
     const duplicatedDepartment = {
-      name: 'technology',
+      name: 'administration',
       managerEmail: 'maria@bugmail.com',
     }
     
     const response = await registerDepartmentUseCase.register(duplicatedDepartment);
-    expect(response).toEqual(left(new DuplicateDataError(duplicatedDepartment.managerEmail)));
+    expect(response).toEqual(left(new DuplicateDataError(duplicatedDepartment.name)));
     // Checking if department was not registered in repository
     expect(spyDepartmentRepository.addParams)
       .toEqual({});
   });
-  
-  test('Should not register department with unregistred manager email', async () => {
-    const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
-    const spyEmployeeRepository = new SpyEmployeeRepository(fakeEmployeeDataBase);
-    const registerDepartmentUseCase = new RegisterDepartment(spyDepartmentRepository, spyEmployeeRepository);
-
-    const duplicatedDepartment = {
-      name: 'technology',
-      managerEmail: 'notregistred@bugmail.com',
-    }
-    
-    const response = await registerDepartmentUseCase.register(duplicatedDepartment);
-    expect(response).toEqual(left(new ManagerNotFoundError(duplicatedDepartment.managerEmail)));
-    // Checking if department was not registered in repository
-    expect(spyDepartmentRepository.addParams)
-      .toEqual({});
-  });
-  */
   
 })
