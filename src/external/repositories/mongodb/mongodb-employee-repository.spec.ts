@@ -16,7 +16,7 @@ describe('MongodbEmployeeRepository validator', () => {
       console.log('NO URI')
     }
       
-  }, 50000);
+  }, 20000);
   
   afterAll(async () => {
     await mongoHelper.disconnect();
