@@ -60,9 +60,9 @@ describe('RegisterDepartment validator', () => {
       name: 'NewDepartment',
       managerEmail: 'maria@bugmail.com',
     }
-    
+
     const response = await registerDepartmentUseCase.register(newDepartment);
-    const department = await spyDepartmentRepository.findDepartmentByManagerEmail(newDepartment.managerEmail);
+    const department = await spyDepartmentRepository.findDepartmentByName(newDepartment.name);
     expect(department?.managerEmail)
       .toEqual(newDepartment.managerEmail);
 
