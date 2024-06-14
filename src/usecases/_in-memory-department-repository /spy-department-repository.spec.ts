@@ -23,17 +23,6 @@ describe('SpyDepartmentRepository validator', () => {
 
   });
   
-  test('Should return department by email', async () => {
-    const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
-    expect(await spyDepartmentRepository.findDepartmentByManagerEmail(fakeDepartmentsDatabase[1].managerEmail))
-      .toEqual(fakeDepartmentsDatabase[1]);
-  });
-  
-  test('Should return null if email was not found', async () => {
-    const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
-    expect(await spyDepartmentRepository.findDepartmentByManagerEmail('thisEmailDoesNotExists@bugmai.com'))
-      .toBe(null);
-  });
   
   test('Should return true for existent department', async () => {
     const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);

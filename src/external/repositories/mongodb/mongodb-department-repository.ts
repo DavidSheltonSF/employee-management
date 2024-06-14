@@ -1,0 +1,74 @@
+import { Name } from "../../../entities/_validators";
+import { DepartmentData } from "../../../entities/department/department-data";
+import { DepartmentRepository } from "../../../usecases/_ports/department-repository";
+import { mongoHelper } from "./helpers/mongo-helper";
+
+
+export class MongodbDepartmentRepository implements DepartmentRepository{
+  
+  async findAllDepartments(): Promise<DepartmentData[]>{
+    const departmentCollection = await mongoHelper.getCollection('departments')?.find().toArray();
+
+    if (departmentCollection){
+      const result = departmentCollection.map((elem) => {
+        const { name, managerEmail} = elem;
+         
+        return { name, managerEmail }
+      })
+
+      return result
+    }
+
+    return []
+  }
+
+  async findDepartmentByName(email: string): Promise<DepartmentData | null> {
+    const departmentCollection = mongoHelper.getCollection('departments');
+    const department = await departmentCollection?.findOne({email});
+
+    if (department){
+      const {name, managerEmail} = department
+      return {name, managerEmail};
+    }
+    return null
+  }
+
+  async add(department: DepartmentData): Promise<void>{
+    const departmentCollection = mongoHelper.getCollection('departments');
+    const exists = await this.exists(department.name);
+    if(!exists){
+      await departmentCollection?.insertOne(department);
+    }
+  }
+
+  async update(departmentData: DepartmentData): Promise<void>{
+    const { name } = departmentData;
+    const departmentCollection = mongoHelper.getCollection('departments');
+    const exists = await this.exists(name);
+    if (exists){
+      await departmentCollection?.updateOne({name}, {"$set": {
+        name: departmentData.name,
+        managerEmail: departmentData.managerEmail
+      }});
+    }
+  }
+
+  async delete(email: string): Promise<void>{
+    const departmentCollection = mongoHelper.getCollection('departments');
+    const exists = await this.exists(email);
+
+    if (exists){
+      await departmentCollection?.deleteOne({email});
+    }
+  }
+
+  async exists(name: string): Promise<boolean>{
+    const result = await this.findDepartmentByName(name);
+    if (result != null){
+      return true;
+    }
+
+    return false
+  }
+
+}
