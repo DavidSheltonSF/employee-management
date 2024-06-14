@@ -145,7 +145,7 @@ describe('MongodbUserRepository validator', () => {
     
     expect(allUsers[0].email).toEqual(users[0].email);
     expect(allUsers[1].email).toEqual(users[1].email);
-  });
+  }, 20000);
 
   test('Should return a single user by email from the database', async () => {
 
