@@ -1,4 +1,3 @@
-import { Name } from "../../../entities/_validators";
 import { DepartmentData } from "../../../entities/department/department-data";
 import { DepartmentRepository } from "../../../usecases/_ports/department-repository";
 import { mongoHelper } from "./helpers/mongo-helper";
@@ -22,9 +21,9 @@ export class MongodbDepartmentRepository implements DepartmentRepository{
     return []
   }
 
-  async findDepartmentByName(email: string): Promise<DepartmentData | null> {
+  async findDepartmentByName(name: string): Promise<DepartmentData | null> {
     const departmentCollection = mongoHelper.getCollection('departments');
-    const department = await departmentCollection?.findOne({email});
+    const department = await departmentCollection?.findOne({name});
 
     if (department){
       const {name, managerEmail} = department
@@ -45,6 +44,7 @@ export class MongodbDepartmentRepository implements DepartmentRepository{
     const { name } = departmentData;
     const departmentCollection = mongoHelper.getCollection('departments');
     const exists = await this.exists(name);
+    console.log(exists)
     if (exists){
       await departmentCollection?.updateOne({name}, {"$set": {
         name: departmentData.name,
@@ -53,12 +53,12 @@ export class MongodbDepartmentRepository implements DepartmentRepository{
     }
   }
 
-  async delete(email: string): Promise<void>{
+  async delete(name: string): Promise<void>{
     const departmentCollection = mongoHelper.getCollection('departments');
-    const exists = await this.exists(email);
+    const exists = await this.exists(name);
 
     if (exists){
-      await departmentCollection?.deleteOne({email});
+      await departmentCollection?.deleteOne({name});
     }
   }
 
