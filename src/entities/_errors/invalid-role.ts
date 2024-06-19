@@ -2,7 +2,7 @@ import { DomainError } from "./domain-error";
 
 export class InvalidRoleError extends Error implements DomainError{
   constructor (role: string){
-    super(`The role "${role}" is invalid.`);
+    super(`"${role}" is invalid. Role should contain only letters and numbers.`);
     this.name = 'InvalidRoleError';
   }
 }
