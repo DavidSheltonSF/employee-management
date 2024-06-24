@@ -20,17 +20,13 @@ export class Gender {
 
   static validate(gender: string): boolean {
 
-    switch(gender.toLocaleLowerCase()){
+    const genderLower = gender.toLocaleLowerCase()
 
-      case GenderEnum.M:
-        return true;
-      
-      case GenderEnum.F:
-        return true;
-      
-      default:
-        return false;
+    if(genderLower === GenderEnum.M || genderLower == GenderEnum.F){
+      return true;
     }
+    return false
+
   }
 
   static create(gender: string): Either<InvalidGenderError, Gender> {

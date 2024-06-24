@@ -6,7 +6,7 @@ export class Email {
 
   private constructor(email: string){
     this.email = email;
-    //Object.freeze(this);
+    Object.freeze(this);
   }
 
   get value (): string{

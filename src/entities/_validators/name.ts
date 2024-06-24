@@ -6,7 +6,7 @@ export class Name {
 
   private constructor(name: string){
     this.name = name;
-    //Object.freeze(this);
+    Object.freeze(this);
   }
 
   get value (): string {
