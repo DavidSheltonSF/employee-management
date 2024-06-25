@@ -4,7 +4,7 @@ import { DepartmentRepository } from "../_ports/department-repository";
 export class SpyDepartmentRepository implements DepartmentRepository {
   departments: DepartmentData[] = [];
   addParams: Record<string, DepartmentData> = {}
-  updateParams: Record<string, string | DepartmentData | DepartmentData> = {};
+  updateParams: Record<string, DepartmentData> = {};
   deleteParams: Record<string, string > = {};
 
   constructor(departments: DepartmentData[]){
@@ -15,38 +15,33 @@ export class SpyDepartmentRepository implements DepartmentRepository {
     return this.departments;
   }
 
-  async findDepartmentByName (name: string): Promise<DepartmentData| null> {
-    var u: DepartmentData
-    for (u of this.departments) {
-      if (u.name === name) {
-        return u
+  async findDepartmentByName(name: string): Promise<DepartmentData | null> {
+    let department: DepartmentData
+    for (department of this.departments) {
+      if (department.name === name) {
+        return department
       }
     }
     return null
   }
 
-  async exists (name: string): Promise<boolean> {
+  async exists(name: string): Promise<boolean> {
     if (await this.findDepartmentByName(name) === null){
       return false;
     }
-
     return true;
   }
 
-  async add (departmentData: DepartmentData): Promise<void> {
-
+  async add(departmentData: DepartmentData): Promise<void> {
     this.departments.push(departmentData);
     this.addParams['departmentData'] = departmentData
-   
   }
 
-  async update (departmentData: DepartmentData | DepartmentData):Promise<void>{
-
+  async update(departmentData: DepartmentData):Promise<void>{
     this.updateParams['departmentData'] = departmentData;
   }
 
-  async delete (managerEmail: string): Promise<void> {
-    
+  async delete(managerEmail: string): Promise<void> {
     this.deleteParams['managerEmail'] = managerEmail;
   }
 }
