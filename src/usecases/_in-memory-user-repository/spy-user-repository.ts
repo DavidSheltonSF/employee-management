@@ -16,10 +16,10 @@ export class SpyUserRepository implements UserRepository {
   }
 
   async findUserByEmail (email: string): Promise<UserData| null> {
-    var u: UserData
-    for (u of this.users) {
-      if (u.email === email) {
-        return u
+    var user: UserData
+    for (user of this.users) {
+      if (user.email === email) {
+        return user
       }
     }
     return null
@@ -29,24 +29,19 @@ export class SpyUserRepository implements UserRepository {
     if (await this.findUserByEmail(email) === null){
       return false;
     }
-
     return true;
   }
 
   async add (userData: UserData): Promise<void> {
-
     this.users.push(userData);
     this.addParams['userData'] = userData
-   
   }
 
-  async update (userData: UserData | UserData):Promise<void>{
-
+  async update (userData: UserData): Promise<void>{
     this.updateParams['userData'] = userData;
   }
 
   async delete (email: string): Promise<void> {
-    
     this.deleteParams['email'] = email;
   }
 }
