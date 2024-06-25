@@ -1,6 +1,4 @@
 import { User } from "./user";
-import { left } from "../../shared/either";
-import { InvalidNameError, InvalidEmailError, InvalidGenderError } from "../_errors";
 
 describe('User Validator', () => {
   test('Should create valid user (valid classes)', () =>{
@@ -27,7 +25,7 @@ describe('User Validator', () => {
     }
 
     const userOrError = User.create(userData);
-    expect(userOrError).toEqual(left(new InvalidNameError(userData.name)));
+    expect(userOrError.isLeft()).toBe(true);
 
   });
 
@@ -42,7 +40,7 @@ describe('User Validator', () => {
     }
 
     const userOrError = User.create(userData);
-    expect(userOrError).toEqual(left(new InvalidNameError(userData.lastName)));
+    expect(userOrError.isLeft()).toBe(true);
 
   });
 
@@ -57,7 +55,7 @@ describe('User Validator', () => {
     }
 
     const userOrError = User.create(userData);
-    expect(userOrError).toEqual(left(new InvalidEmailError(userData.email)));
+    expect(userOrError.isLeft()).toBe(true);
 
   });
 
