@@ -20,9 +20,7 @@ export class Gender {
 
   static validate(gender: string): boolean {
 
-    const genderLower = gender.toLocaleLowerCase()
-
-    if(genderLower === GenderEnum.M || genderLower == GenderEnum.F){
+    if(gender === GenderEnum.M || gender == GenderEnum.F){
       return true;
     }
     return false
