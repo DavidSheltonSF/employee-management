@@ -1,5 +1,5 @@
 import { Department } from "./department";
-import { left, right } from "../../shared/either";
+import { left } from "../../shared/either";
 import { InvalidNameError} from "../_errors";
 
 describe('Department Validator', () => {
