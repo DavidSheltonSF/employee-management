@@ -16,10 +16,10 @@ export class SpyEmployeeRepository implements EmployeeRepository {
   }
 
   async findEmployeeByEmail (email: string): Promise<EmployeeData | null> {
-    var u: EmployeeData
-    for (u of this.Employees) {
-      if (u.email === email) {
-        return u
+    var employee: EmployeeData
+    for (employee of this.Employees) {
+      if (employee.email === email) {
+        return employee
       }
     }
     return null
