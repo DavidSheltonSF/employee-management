@@ -11,9 +11,8 @@ const fakeDepartmentsDatabase = [
   },
 ]
 
-
-//
 describe('SpyDepartmentRepository validator', () => {
+
    test('Should return all departments in the repository', async () => {
     const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
 
@@ -24,7 +23,7 @@ describe('SpyDepartmentRepository validator', () => {
   });
   
   
-  test('Should return true for existent department', async () => {
+  test('Should return true for an existent department', async () => {
     const spyDepartmentRepository = new SpyDepartmentRepository(fakeDepartmentsDatabase);
 
     expect(await spyDepartmentRepository.exists(fakeDepartmentsDatabase[1].name))
