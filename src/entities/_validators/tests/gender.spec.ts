@@ -7,12 +7,12 @@ describe('Gender validator', () => {
   });
   
   test('Should not accept valid gender if it is not lowercase', () => {
-    expect(Gender.validate('MALE')).toBe(true);
-    expect(Gender.validate('FEMALE')).toBe(true);
-    expect(Gender.validate('Male')).toBe(true);
-    expect(Gender.validate('Female')).toBe(true);
-    expect(Gender.validate('MaLe')).toBe(true);
-    expect(Gender.validate('FeMaLe')).toBe(true);
+    expect(Gender.validate('MALE')).toBe(false);
+    expect(Gender.validate('FEMALE')).toBe(false);
+    expect(Gender.validate('Male')).toBe(false);
+    expect(Gender.validate('Female')).toBe(false);
+    expect(Gender.validate('MaLe')).toBe(false);
+    expect(Gender.validate('FeMaLe')).toBe(false);
   })
   
   test('Should not accept invalid gender value', () => {
