@@ -20,5 +20,4 @@ describe('Department validator', () => {
     expect(Department.validate('custumer**serv')).toBe(false);
     expect(Department.validate('Cleaning23')).toBe(false);
   })
-  //
 })
