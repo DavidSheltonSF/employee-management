@@ -4,7 +4,7 @@ import { UserRepository } from "../_ports/user-repository";
 export class SpyUserRepository implements UserRepository {
   users: UserData[] = [];
   addParams: Record<string, UserData> = {}
-  updateParams: Record<string, string | UserData | UserData> = {};
+  updateParams: Record<string, UserData> = {};
   deleteParams: Record<string, string > = {};
 
   constructor(users: UserData[]){
