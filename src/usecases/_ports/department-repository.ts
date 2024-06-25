@@ -5,6 +5,6 @@ export interface DepartmentRepository {
   findDepartmentByName: (name: string) => Promise<DepartmentData | null>
   add: (departmentData: DepartmentData) => Promise<void>
   update: (departmentData: DepartmentData) => Promise<void>
-  delete: (email: string) => Promise<void>
+  delete: (name: string) => Promise<void>
   exists: (name: string) => Promise<boolean>
 }

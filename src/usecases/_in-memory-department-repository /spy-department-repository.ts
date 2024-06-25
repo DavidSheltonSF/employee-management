@@ -41,7 +41,7 @@ export class SpyDepartmentRepository implements DepartmentRepository {
     this.updateParams['departmentData'] = departmentData;
   }
 
-  async delete(managerEmail: string): Promise<void> {
-    this.deleteParams['managerEmail'] = managerEmail;
+  async delete(name: string): Promise<void> {
+    this.deleteParams['name'] = name;
   }
 }
