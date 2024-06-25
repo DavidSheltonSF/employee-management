@@ -15,7 +15,6 @@ export class Role{
 
   static validate(role: string): boolean{
 
-
     // Accepts just lowercase words and "_",
     // with no special characters or numbers
     const tester = /^[a-z_]+$/
