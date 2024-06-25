@@ -29,15 +29,15 @@ export class User {
   InvalidEmailError | InvalidPasswordError | 
   InvalidUserRoleError, User>{
     const nameOrError: Either<InvalidNameError, Name> = Name.
-    create(userData.name);
+      create(userData.name);
     const lastNameOrError: Either<InvalidNameError, Name> = Name.
-    create(userData.lastName);
+      create(userData.lastName);
     const emailOrError: Either<InvalidEmailError, Email> = Email.
-    create(userData.email);
+      create(userData.email);
     const userRoleOrError: Either<InvalidUserRoleError, UserRole> = UserRole.
-    create(userData.userRole);
+      create(userData.userRole);
     const passwordOrError: Either<InvalidPasswordError, Password> = Password.
-    create(userData.password);
+      create(userData.password);
 
     if(nameOrError.isLeft()){
       return left(nameOrError.value);
