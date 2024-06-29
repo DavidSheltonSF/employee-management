@@ -12,11 +12,9 @@ export class FindEmployee implements FindEmployeeInterface {
   }
 
   async all(): Promise<FindEmployeeResponse>{
-
     const result = await this.employeeRepository.findAllEmployees();
 
     return right(result);
-
   }
 
   async byEmail(email: string): Promise<FindEmployeeResponse>{
@@ -28,7 +26,5 @@ export class FindEmployee implements FindEmployeeInterface {
     }
 
     return right(employee);
-
   }
-  
 }

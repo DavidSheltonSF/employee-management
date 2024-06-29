@@ -33,7 +33,7 @@ describe('findEmployee validator', () => {
 
   test('Should find all Employees correctly', async () => {
     const allEmployees = await findEmployeeUseCase.all()
-
+    
     expect(allEmployees).toEqual(right(fakeDataBase));
   });
 
@@ -44,10 +44,8 @@ describe('findEmployee validator', () => {
   });
 
   test('Should not find a unexistent employee by email', async () => {
-    const result = await findEmployeeUseCase.byEmail('fakeemail@bugmail.com')
+    const result = await findEmployeeUseCase.byEmail('fakeemail@bugmail.com');
 
     expect(result).toEqual(left(new NoResultError('fakeemail@bugmail.com')));
   });
-
-  
 })
