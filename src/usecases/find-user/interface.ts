@@ -1,4 +1,3 @@
-import { UserData } from "../../entities/user/user-data";
 import { FindUserResponse } from "./response";
 
 export interface FindUserInterface {

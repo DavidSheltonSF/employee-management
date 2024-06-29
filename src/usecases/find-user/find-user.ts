@@ -28,7 +28,5 @@ export class FindUser implements FindUserInterface {
     }
 
     return right(user);
-
   }
-  
 }
