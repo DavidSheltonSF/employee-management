@@ -1,8 +1,5 @@
 import { AlterEmployee } from "./alter-employee";
 import { SpyEmployeeRepository } from "../_in-memory-employee-repository/spy-employee-repository";
-import { left } from "../../shared/either";
-import { NoResultError } from "../_errors/no-result";
-
 
 const fakeDataBase = [
   {
@@ -24,7 +21,6 @@ const fakeDataBase = [
     department: 'Administration'
   },
 ]
-
 
 describe('alterEmployee validator', () => {
 
