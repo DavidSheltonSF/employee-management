@@ -23,7 +23,6 @@ export class RegisterEmployee implements RegisterEmployeeInterface {
     }
 
     const employee = employeeOrError.value;
-
     const birthday = employee.birthday.value;
     const actualYear = new Date(Date.now()).getFullYear();
     const age = actualYear - new Date(birthday).getFullYear();
@@ -38,9 +37,8 @@ export class RegisterEmployee implements RegisterEmployeeInterface {
       return left(new DuplicateDataError(employee.email.value));
     }
 
-    await this.employeeRepository.add(employeeData)
+    await this.employeeRepository.add(employeeData);
 
-    return right(employeeData)
-
+    return right(employeeData);
   }
 }
