@@ -1,8 +1,6 @@
 import { DeleteUser } from "./delete-user";
 import { SpyUserRepository } from "../_in-memory-user-repository/spy-user-repository";
-import { DuplicateDataError } from "../_errors/duplicate-data";
 import { left } from "../../shared/either";
-import { TooYoungAgeError } from "../_errors/too-young-age";
 import { NoResultError } from "../_errors/no-result";
 
 

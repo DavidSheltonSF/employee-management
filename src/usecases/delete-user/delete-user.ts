@@ -1,5 +1,3 @@
-import { User } from "../../entities/user/user";
-import { UserData } from "../../entities/user/user-data";
 import { left, right } from "../../shared/either";
 import { NoResultError } from "../_errors/no-result";
 import { UserRepository } from "../_ports/user-repository";
@@ -24,6 +22,5 @@ export class DeleteUser implements DeleteUserInterface {
     await this.userRepository.delete(email);
 
     return right(user)
-
   }
 }
