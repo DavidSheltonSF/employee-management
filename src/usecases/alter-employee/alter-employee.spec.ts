@@ -1,5 +1,7 @@
 import { AlterEmployee } from "./alter-employee";
 import { SpyEmployeeRepository } from "../_in-memory-employee-repository/spy-employee-repository";
+import { left } from "../../shared/either";
+import { NoResultError } from "../_errors/no-result";
 
 const fakeDataBase = [
   {
@@ -54,15 +56,24 @@ describe('alterEmployee validator', () => {
       department: 'techlonogy'
     });
   });
-  /*
+  
   test('Should return NoResultError for a not registered email', async () => {
     const spyEmployeeRepository = new SpyEmployeeRepository(fakeDataBase);
     const alterEmployeeUseCase = new AlterEmployee(spyEmployeeRepository);
 
-    const falseEmail = 'unexistentemail@bugmail.com'
-    const response = await alterEmployeeUseCase.alter(falseEmail, fakeDataBase[0]);
+    const unexistentEmployee = {
+      name: 'Existent',
+      lastName: 'Not', 
+      email: 'unexistentemail@bugmail.com',
+      birthday: '2000-05-30',
+      gender: 'male',
+      role: 'enginner',
+      department: 'techlonogy'
+    }
 
-    expect(response).toEqual(left(new NoResultError(falseEmail)));
+    const response = await alterEmployeeUseCase.alter(unexistentEmployee);
+
+    expect(response).toEqual(left(new NoResultError(unexistentEmployee.email)));
   })
-  */
+  
 })
