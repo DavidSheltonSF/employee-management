@@ -19,16 +19,11 @@ export class FindUserSpy implements FindUser {
     for(let i = 0; i < 3; i++){
       mockedUsers.push(mock_user());
     }
-
     return right(mockedUsers);
-
   }
 
   async byEmail(email: string): Promise<FindUserResponse>{
-
     this.findByEmailParam['email'] = email;
-
     return right(mock_user());
-
   }
 }

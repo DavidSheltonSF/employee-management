@@ -16,13 +16,12 @@ export class DeleteEmployeeSpy implements DeleteEmployee {
   async delete(email: string): Promise<DeleteEmployeeResponse> {
 
     this.deleteParam['email'] = email;
-
+    
     const employee = await this.employeeRepository.findEmployeeByEmail(email);
 
     if (!employee){
       return left(new NoResultError(email))
     }
-
     return right(mock_employee());
   }
 }

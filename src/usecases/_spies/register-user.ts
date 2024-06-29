@@ -26,11 +26,12 @@ export class RegisterUserSpy implements RegisterUser {
     }
 
     const user = userOrError.value;
+
     const exists = this.userRepository.exists(user.email.value);
     if ((await exists).valueOf()){
       return left(new DuplicateDataError(user.email.value))
     }
-
+    
     return right(mock_user());
   }
 }

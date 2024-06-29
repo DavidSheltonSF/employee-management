@@ -31,8 +31,6 @@ export class AlterEmployeeSpy implements AlterEmployee {
     if (!employee){
       return left(new NoResultError(email))
     }
-
     return right(mock_employee());
-
   }
 }

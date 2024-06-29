@@ -21,14 +21,11 @@ export class FindEmployeeSpy implements FindEmployee {
     }
 
     return right(mockedEmployees);
-
   }
 
   async byEmail(email: string): Promise<FindEmployeeResponse>{
-
     this.findByEmailParam['email'] = email;
-
+    
     return right(mock_employee());
-
   }
 }

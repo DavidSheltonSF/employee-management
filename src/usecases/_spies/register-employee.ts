@@ -26,11 +26,12 @@ export class RegisterEmployeeSpy implements RegisterEmployee {
     }
 
     const employee = employeeOrError.value;
+
     const exists = this.employeeRepository.exists(employee.email.value);
     if ((await exists).valueOf()){
       return left(new DuplicateDataError(employee.email.value))
     }
-
+    
     return right(mock_employee());
   }
 }

@@ -24,8 +24,6 @@ export class AlterUserSpy implements AlterUser {
     if (!user){
       return left(new NoResultError(email))
     }
-
     return right(mock_user());
-
   }
 }

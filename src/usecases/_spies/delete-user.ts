@@ -22,7 +22,6 @@ export class DeleteUserSpy implements DeleteUser {
     if (!user){
       return left(new NoResultError(email))
     }
-
     return right(mock_user());
   }
 }
