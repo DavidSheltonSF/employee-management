@@ -1,5 +1,3 @@
-import { Employee } from "../../entities/employee/employee";
-import { EmployeeData } from "../../entities/employee/employee-data";
 import { left, right } from "../../shared/either";
 import { NoResultError } from "../_errors/no-result";
 import { EmployeeRepository } from "../_ports/employee-repository";
@@ -24,6 +22,5 @@ export class DeleteEmployee implements DeleteEmployeeInterface {
     await this.employeeRepository.delete(email);
 
     return right(employee)
-
   }
 }

@@ -1,8 +1,6 @@
 import { DeleteEmployee } from "./delete-employee";
 import { SpyEmployeeRepository } from "../_in-memory-employee-repository/spy-employee-repository";
-import { DuplicateDataError } from "../_errors/duplicate-data";
 import { left } from "../../shared/either";
-import { TooYoungAgeError } from "../_errors/too-young-age";
 import { NoResultError } from "../_errors/no-result";
 
 
