@@ -33,6 +33,5 @@ export class RegisterUser implements RegisterUserInterface {
     await this.userRepository.add(userData);
 
     return right(userData);
-
   }
 }

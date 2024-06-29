@@ -3,6 +3,5 @@ import { InvalidEmailError, InvalidNameError, InvalidPasswordError, InvalidUserR
 import { Either } from "../../shared/either";
 import { DuplicateDataError } from "../_errors/duplicate-data";
 
-
 export type RegisterUserResponse = Either<InvalidNameError | 
 InvalidEmailError | InvalidPasswordError | InvalidUserRoleError | DuplicateDataError, UserData>
