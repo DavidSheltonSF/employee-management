@@ -71,6 +71,6 @@ export class MongodbEmployeeRepository implements EmployeeRepository{
     }
 
     return false
-  }
+  };
 
 }

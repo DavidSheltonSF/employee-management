@@ -10,16 +10,14 @@ export class MongodbUserRepository implements UserRepository{
 
     if (userCollection){
       const result = userCollection.map((elem) => {
-        const { name, lastName, email, userRole, password} = elem;
-
-         
+        const { name, lastName, email, userRole, password} = elem;  
         return { name, lastName, email, userRole, password}
-      })
+      });
 
-      return result
+      return result;
     }
 
-    return []
+    return [];
   }
 
   async findUserByEmail(email: string): Promise<UserData | null> {
@@ -30,7 +28,7 @@ export class MongodbUserRepository implements UserRepository{
       const {name, lastName, email, userRole, password} = user
       return {name, lastName, email, userRole, password};
     }
-    return null
+    return null;
   }
 
   async add(user: UserData): Promise<void>{
@@ -70,7 +68,6 @@ export class MongodbUserRepository implements UserRepository{
       return true;
     }
 
-    return false
+    return false;
   }
-
 }

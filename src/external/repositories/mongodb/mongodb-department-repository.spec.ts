@@ -1,4 +1,3 @@
-
 import { mongoHelper } from "./helpers/mongo-helper"
 import { MongodbDepartmentRepository } from "./mongodb-department-repository";
 import {config} from 'dotenv'
@@ -20,6 +19,7 @@ describe('MongodbDepartmentRepository validator', () => {
       
   }, 60000);
   
+
   afterAll(async () => {
     await mongoHelper.disconnect();
 
@@ -29,6 +29,7 @@ describe('MongodbDepartmentRepository validator', () => {
   beforeEach(async () => {
     await mongoHelper.clearCollection('departments');
   });
+
 
   test('Should return all departments in the database', async () => {
 
@@ -44,7 +45,6 @@ describe('MongodbDepartmentRepository validator', () => {
     ]
 
     // Adding new departments to database
-    
     await repository.add(departments[0])
     await repository.add(departments[1])
 
@@ -127,7 +127,6 @@ describe('MongodbDepartmentRepository validator', () => {
     }
 
     // Adding new departments to database
-    
     await repository.add(newDepartment1)
     await repository.add(newDepartment2)
 

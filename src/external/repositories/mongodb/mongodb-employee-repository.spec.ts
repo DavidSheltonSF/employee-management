@@ -21,7 +21,6 @@ describe('MongodbEmployeeRepository validator', () => {
   
   afterAll(async () => {
     await mongoHelper.disconnect();
-
   });
 
   
@@ -53,9 +52,8 @@ describe('MongodbEmployeeRepository validator', () => {
     ]
 
     // Adding new employees to database
-    
-    await repository.add(employees[0])
-    await repository.add(employees[1])
+    await repository.add(employees[0]);
+    await repository.add(employees[1]);
 
     const allEmployees = await repository.findAllEmployees();
     
@@ -90,18 +88,18 @@ describe('MongodbEmployeeRepository validator', () => {
 
     // Adding new employees to database
     
-    await repository.add(employees[0])
-    await repository.add(employees[1])
+    await repository.add(employees[0]);
+    await repository.add(employees[1]);
 
     const employee = await repository.findEmployeeByEmail(employees[1].email);
     
-    expect(employee?.name).toEqual(employees[1].name)
-    expect(employee?.lastName).toEqual(employees[1].lastName)
-    expect(employee?.birthday).toEqual(employees[1].birthday)
-    expect(employee?.department).toEqual(employees[1].department)
-    expect(employee?.email).toEqual(employees[1].email)
-    expect(employee?.gender).toEqual(employees[1].gender)
-    expect(employee?.role).toEqual(employees[1].role)
+    expect(employee?.name).toEqual(employees[1].name);
+    expect(employee?.lastName).toEqual(employees[1].lastName);
+    expect(employee?.birthday).toEqual(employees[1].birthday);
+    expect(employee?.department).toEqual(employees[1].department);
+    expect(employee?.email).toEqual(employees[1].email);
+    expect(employee?.gender).toEqual(employees[1].gender);
+    expect(employee?.role).toEqual(employees[1].role);
   });
   
   test('Should add employee', async () => {
@@ -120,13 +118,13 @@ describe('MongodbEmployeeRepository validator', () => {
 
     const addedDepertment = await repository.findEmployeeByEmail(newEmployee.email);
 
-    expect(addedDepertment?.name).toEqual(newEmployee.name)
-    expect(addedDepertment?.lastName).toEqual(newEmployee.lastName)
-    expect(addedDepertment?.birthday).toEqual(newEmployee.birthday)
-    expect(addedDepertment?.department).toEqual(newEmployee.department)
-    expect(addedDepertment?.email).toEqual(newEmployee.email)
-    expect(addedDepertment?.gender).toEqual(newEmployee.gender)
-    expect(addedDepertment?.role).toEqual(newEmployee.role)
+    expect(addedDepertment?.name).toEqual(newEmployee.name);
+    expect(addedDepertment?.lastName).toEqual(newEmployee.lastName);
+    expect(addedDepertment?.birthday).toEqual(newEmployee.birthday);
+    expect(addedDepertment?.department).toEqual(newEmployee.department);
+    expect(addedDepertment?.email).toEqual(newEmployee.email);
+    expect(addedDepertment?.gender).toEqual(newEmployee.gender);
+    expect(addedDepertment?.role).toEqual(newEmployee.role);
   });
   
   test('Should update employee', async () => {
@@ -153,16 +151,15 @@ describe('MongodbEmployeeRepository validator', () => {
       department: 'technology'
     });
 
-
     const updatedEmployee = await repository.findEmployeeByEmail('newton@bugmail.com');
     
-    expect(updatedEmployee?.name).toEqual('UPDATED')
-    expect(updatedEmployee?.lastName).toEqual(newEmployee.lastName)
-    expect(updatedEmployee?.birthday).toEqual(newEmployee.birthday)
-    expect(updatedEmployee?.department).toEqual(newEmployee.department)
-    expect(updatedEmployee?.email).toEqual(newEmployee.email)
-    expect(updatedEmployee?.gender).toEqual(newEmployee.gender)
-    expect(updatedEmployee?.role).toEqual(newEmployee.role)
+    expect(updatedEmployee?.name).toEqual('UPDATED');
+    expect(updatedEmployee?.lastName).toEqual(newEmployee.lastName);
+    expect(updatedEmployee?.birthday).toEqual(newEmployee.birthday);
+    expect(updatedEmployee?.department).toEqual(newEmployee.department);
+    expect(updatedEmployee?.email).toEqual(newEmployee.email);
+    expect(updatedEmployee?.gender).toEqual(newEmployee.gender);
+    expect(updatedEmployee?.role).toEqual(newEmployee.role);
 
   });
   
@@ -190,8 +187,8 @@ describe('MongodbEmployeeRepository validator', () => {
 
     // Adding new employees to database
     
-    await repository.add(newEmployee1)
-    await repository.add(newEmployee2)
+    await repository.add(newEmployee1);
+    await repository.add(newEmployee2);
 
 
     // Deleting the second employee
@@ -199,7 +196,7 @@ describe('MongodbEmployeeRepository validator', () => {
 
     // Checking if employee was deleted
     const removedEmployee = await repository.findEmployeeByEmail(newEmployee2.email);
-    expect(removedEmployee).toBe(null)
+    expect(removedEmployee).toBe(null);
   });
   
 })

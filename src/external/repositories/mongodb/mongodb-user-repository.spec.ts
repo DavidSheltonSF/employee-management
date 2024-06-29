@@ -14,7 +14,7 @@ describe('MongodbUserRepository validator', () => {
     if (MONGO_URI){
       await mongoHelper.connect(MONGO_URI)
     } else {
-      console.log('NO URI')
+      console.log('NO URI');
     }
       
   }, 60000);
@@ -28,6 +28,7 @@ describe('MongodbUserRepository validator', () => {
   beforeEach(async () => {
     await mongoHelper.clearCollection('users');
   });
+
 
   test('Should return all users in the database', async () => {
 
@@ -48,9 +49,7 @@ describe('MongodbUserRepository validator', () => {
       }
     ]
 
-
     // Adding new users to database
-    
     await repository.add(users[0])
     await repository.add(users[1])
 
@@ -163,16 +162,15 @@ describe('MongodbUserRepository validator', () => {
 
     // Adding new users to database
     
-    await repository.add(newUser1)
-    await repository.add(newUser2)
-
+    await repository.add(newUser1);
+    await repository.add(newUser2);
 
     // Deleting the second user
     await repository.delete(newUser2.email);
 
     // Checking if user was deleted
     const removedUser = await repository.findUserByEmail(newUser2.email);
-    expect(removedUser).toBe(null)
+    expect(removedUser).toBe(null);
   });
   
 })

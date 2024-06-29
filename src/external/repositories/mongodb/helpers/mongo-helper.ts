@@ -1,4 +1,4 @@
-import { MongoClient, Collection, ServerApiVersion } from "mongodb";
+import { MongoClient, Collection } from "mongodb";
 
 
 export class MongoHelper {
@@ -11,13 +11,13 @@ export class MongoHelper {
 
   async connect(uri: string){
     this.client = new MongoClient(uri);
-    await this.client.connect()
+    await this.client.connect();
   }
 
   async disconnect(): Promise<void>{
 
     if (this.client){
-      this.client.close()
+      this.client.close();
     }
   }
 
@@ -30,9 +30,9 @@ export class MongoHelper {
   }
 
   async clearCollection(name: string): Promise<void>{
-    await this.client?.db().collection(name).deleteMany({})
+    await this.client?.db().collection(name).deleteMany({});
   }
 }
 
-export const mongoHelper = new MongoHelper()
+export const mongoHelper = new MongoHelper();
 

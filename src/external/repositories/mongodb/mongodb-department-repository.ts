@@ -11,9 +11,8 @@ export class MongodbDepartmentRepository implements DepartmentRepository{
     if (departmentCollection){
       const result = departmentCollection.map((elem) => {
         const { name, managerEmail} = elem;
-         
         return { name, managerEmail }
-      })
+      });
 
       return result
     }
@@ -44,7 +43,6 @@ export class MongodbDepartmentRepository implements DepartmentRepository{
     const { name } = departmentData;
     const departmentCollection = mongoHelper.getCollection('departments');
     const exists = await this.exists(name);
-    console.log(exists)
     if (exists){
       await departmentCollection?.updateOne({name}, {"$set": {
         name: departmentData.name,
@@ -67,8 +65,6 @@ export class MongodbDepartmentRepository implements DepartmentRepository{
     if (result != null){
       return true;
     }
-
     return false
   }
-
 }
