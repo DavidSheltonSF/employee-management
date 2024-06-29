@@ -15,7 +15,6 @@ export class AlterUser implements AlterUserInterface {
   async alter(userData: UserData): Promise<AlterUserResponse>{
     const { email } = userData;
     const user = await this.userRepository.findUserByEmail(email);
-
     if (!user){
       return left(new NoResultError(email))
     }

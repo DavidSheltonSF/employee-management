@@ -25,13 +25,6 @@ const fakeDataBase = [
 describe('alterUser validator', () => {
 
   test('Should alter User correctly', async () => {
-    const userToAlter = {
-      name: 'Marcos',
-      lastName: 'Jeraldo', 
-      email: 'marcos@bugmail.com',
-      userRole: 'admin',
-      password: 'marcos123'
-    }
 
     const spyUserRepository = new SpyUserRepository(fakeDataBase);
     const alterUserUseCase = new AlterUser(spyUserRepository);
