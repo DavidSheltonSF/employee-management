@@ -1,8 +1,7 @@
 import { RegisterDepartment } from "./register-department";
-import { SpyDepartmentRepository } from "../_in-memory-department-repository /spy-department-repository";
+import { SpyDepartmentRepository } from "../_in-memory-department-repository/spy-department-repository";
 import { DuplicateDataError } from "../_errors/duplicate-data";
 import { left } from "../../shared/either";
-import { ManagerNotFoundError } from "../_errors/ManagerNotFoundError";
 import { SpyEmployeeRepository } from "../_in-memory-employee-repository/spy-employee-repository";
 
 
