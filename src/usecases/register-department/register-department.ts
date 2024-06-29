@@ -34,7 +34,7 @@ export class RegisterDepartment implements RegisterDepartmentInterface {
 
     if (department.managerEmail){
       const managerExists = await this.employeeRepository.exists(department.managerEmail.value);
-
+      
       if (!managerExists){
         return left(new ManagerNotFoundError(department.managerEmail.value))
       }
