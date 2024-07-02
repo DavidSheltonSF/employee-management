@@ -22,7 +22,6 @@ export class FindDepartment implements FindDepartmentInterface {
   async byName(name: string): Promise<FindDepartmentResponse>{
 
     const department = await this.departmentRepository.findDepartmentByName(name);
-    console.log(department)
     if (!department){
       return left(new NoResultError(name))
     }
