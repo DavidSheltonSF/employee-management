@@ -2,7 +2,7 @@ import { InvalidNameError } from "../../entities/_errors";
 import { Department } from "../../entities/department/department";
 import { DepartmentData } from "../../entities/department/department-data";
 import { Either, left, right } from "../../shared/either";
-import { ManagerNotFoundError } from "../_errors/ManagerNotFoundError";
+import { ManagerNotFoundError } from "../_errors/ManagerNotFound";
 import { DuplicateDataError } from "../_errors/duplicate-data";
 import { DepartmentRepository } from "../_ports/department-repository";
 import { EmployeeRepository } from "../_ports/employee-repository";
