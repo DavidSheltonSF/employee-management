@@ -141,7 +141,7 @@ describe('MongodbEmployeeRepository validator', () => {
 
     await repository.add(newEmployee);
 
-    await repository.update({
+    await repository.update('newton@bugmail.com', {
       name: 'UPDATED',
       lastName: 'new',
       email: 'newton@bugmail.com',
