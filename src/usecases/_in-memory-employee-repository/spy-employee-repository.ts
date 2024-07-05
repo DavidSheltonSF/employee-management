@@ -42,8 +42,8 @@ export class SpyEmployeeRepository implements EmployeeRepository {
 
   }
 
-  async update (employeeData: EmployeeData): Promise<void>{
-    const { email } = employeeData;
+  async update (email: string, employeeData: EmployeeData): Promise<void>{
+
     const employee = await this.findEmployeeByEmail(email);
 
     if (employee){
