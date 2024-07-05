@@ -12,8 +12,8 @@ export class AlterRole implements AlterRoleInterface {
     this.roleRepository = roleRepo;
   }
 
-  async alter(roleData: RoleData): Promise<AlterRoleResponse>{
-    const { name } = roleData;
+  async alter(name: string, roleData: RoleData): Promise<AlterRoleResponse>{
+
     const role = await this.roleRepository.findRoleByName(name);
     if (!role){
       return left(new NoResultError(name))
