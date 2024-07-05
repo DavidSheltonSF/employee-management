@@ -40,8 +40,8 @@ export class MongodbEmployeeRepository implements EmployeeRepository{
     }
   }
 
-  async update(employeeData: EmployeeData): Promise<void>{
-    const { email } = employeeData;
+  async update(email: string, employeeData: EmployeeData): Promise<void>{
+
     const employeeCollection = mongoHelper.getCollection('employees');
     const exists = await this.exists(email);
     if (exists){
