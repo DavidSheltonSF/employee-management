@@ -15,7 +15,7 @@ export class AlterEmployeeSpy implements AlterEmployee {
     this.employeeRepository = employeeRepo;
   }
 
-  async alter(employeeData: EmployeeData): Promise<AlterEmployeeResponse> {
+  async alter(email: string, employeeData: EmployeeData): Promise<AlterEmployeeResponse> {
 
     const employeeOrError = Employee.create(employeeData);
 
@@ -25,7 +25,6 @@ export class AlterEmployeeSpy implements AlterEmployee {
 
     this.alterParam['employeeData'] = employeeData;
 
-    const { email } = employeeData;
     const employee = await this.employeeRepository.findEmployeeByEmail(email);
 
     if (!employee){

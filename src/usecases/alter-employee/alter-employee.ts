@@ -12,14 +12,14 @@ export class AlterEmployee implements AlterEmployeeInterface {
     this.employeeRepository = employeeRepo;
   }
 
-  async alter(employeeData: EmployeeData): Promise<AlterEmployeeResponse>{
-    const { email } = employeeData
+  async alter(email:string, employeeData: EmployeeData): Promise<AlterEmployeeResponse>{
+    
     const employee = await this.employeeRepository.findEmployeeByEmail(email);
     if (!employee){
       return left(new NoResultError(email))
     }
 
-    await this.employeeRepository.update(employeeData);
+    await this.employeeRepository.update(email, employeeData);
 
     return right(employee)
   }
