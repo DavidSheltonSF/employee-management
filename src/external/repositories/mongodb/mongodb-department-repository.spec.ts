@@ -103,7 +103,7 @@ describe('MongodbDepartmentRepository validator', () => {
 
     await repository.add(newDepartment);
 
-    await repository.update({
+    await repository.update('administration', {
       name: 'administration',
       managerEmail: 'thamires@bugmail.com',
     });

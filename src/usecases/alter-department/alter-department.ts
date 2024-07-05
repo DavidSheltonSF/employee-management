@@ -12,14 +12,14 @@ export class AlterDepartment implements AlterDepartmentInterface {
     this.departmentRepository = departmentRepo;
   }
 
-  async alter(departmentData: DepartmentData): Promise<AlterDepartmentResponse>{
-    const { name } = departmentData
+  async alter(name: string, departmentData: DepartmentData): Promise<AlterDepartmentResponse>{
+
     const department = await this.departmentRepository.findDepartmentByName(name);
     if (!department){
       return left(new NoResultError(name))
     }
 
-    await this.departmentRepository.update(departmentData);
+    await this.departmentRepository.update(name, departmentData);
 
     return right(department)
   }

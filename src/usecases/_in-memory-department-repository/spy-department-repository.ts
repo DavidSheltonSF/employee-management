@@ -4,7 +4,7 @@ import { DepartmentRepository } from "../_ports/department-repository";
 export class SpyDepartmentRepository implements DepartmentRepository {
   departments: DepartmentData[] = [];
   addParams: Record<string, DepartmentData> = {}
-  updateParams: Record<string, DepartmentData> = {};
+  updateParams: Record<string, string | DepartmentData> = {};
   deleteParams: Record<string, string > = {};
 
   constructor(departments: DepartmentData[]){
@@ -37,7 +37,8 @@ export class SpyDepartmentRepository implements DepartmentRepository {
     this.addParams['departmentData'] = departmentData
   }
 
-  async update(departmentData: DepartmentData):Promise<void>{
+  async update(name: string, departmentData: DepartmentData):Promise<void>{
+    this.updateParams['name'] = name;
     this.updateParams['departmentData'] = departmentData;
   }
 

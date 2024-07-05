@@ -37,7 +37,8 @@ export class SpyDepartmentRepository implements DepartmentRepository {
     this.addParams['departmentData'] = departmentData
   }
 
-  async update(departmentData: DepartmentData):Promise<void>{
+  async update(name: string, departmentData: DepartmentData):Promise<void>{
+    this.updateParams['name'] = departmentData;
     this.updateParams['departmentData'] = departmentData;
   }
 

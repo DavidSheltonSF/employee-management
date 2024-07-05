@@ -39,8 +39,8 @@ export class MongodbDepartmentRepository implements DepartmentRepository{
     }
   }
 
-  async update(departmentData: DepartmentData): Promise<void>{
-    const { name } = departmentData;
+  async update(name: string, departmentData: DepartmentData): Promise<void>{
+
     const departmentCollection = mongoHelper.getCollection('departments');
     const exists = await this.exists(name);
     if (exists){

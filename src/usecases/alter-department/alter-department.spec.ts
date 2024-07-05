@@ -21,7 +21,7 @@ describe('alterDepartment validator', () => {
     const spyDepartmentRepository = new SpyDepartmentRepository(fakeDataBase);
     const alterDepartmentUseCase = new AlterDepartment(spyDepartmentRepository);
 
-    const response = await alterDepartmentUseCase.alter({
+    const response = await alterDepartmentUseCase.alter('technology', {
       name: 'technology',
       managerEmail: 'ana@bugmail.com', 
     });
@@ -46,7 +46,7 @@ describe('alterDepartment validator', () => {
       managerEmail: 'unexistent@bugmail.com', 
     }
 
-    const response = await alterDepartmentUseCase.alter(unexistentDepartment);
+    const response = await alterDepartmentUseCase.alter(unexistentDepartment.name, unexistentDepartment);
 
     expect(response).toEqual(left(new NoResultError(unexistentDepartment.name)));
   })
