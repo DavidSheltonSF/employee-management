@@ -31,15 +31,18 @@ describe('alterEmployee validator', () => {
     const spyEmployeeRepository = new SpyEmployeeRepository(fakeDataBase);
     const alterEmployeeUseCase = new AlterEmployee(spyEmployeeRepository);
 
-    const response = await alterEmployeeUseCase.alter({
-      name: 'Marcos',
-      lastName: 'Jeraldo', 
-      email: 'marcos@bugmail.com',
-      birthday: '2000-05-30',
-      gender: 'male',
-      role: 'enginner',
-      department: 'techlonogy'
-    });
+    const response = await alterEmployeeUseCase.alter(
+      'marcos@bugmail.com',
+      {
+        name: 'Marcos',
+        lastName: 'Jeraldo', 
+        email: 'marcoszozo@bugmail.com',
+        birthday: '2000-05-30',
+        gender: 'male',
+        role: 'enginner',
+        department: 'techlonogy'
+      }
+  );
 
     // Checking if response of the usecase is right
     expect(response.isRight()).toBeTruthy()
@@ -49,7 +52,7 @@ describe('alterEmployee validator', () => {
     .toEqual({
       name: 'Marcos',
       lastName: 'Jeraldo', 
-      email: 'marcos@bugmail.com',
+      email: 'marcoszozo@bugmail.com',
       birthday: '2000-05-30',
       gender: 'male',
       role: 'enginner',
@@ -71,7 +74,10 @@ describe('alterEmployee validator', () => {
       department: 'techlonogy'
     }
 
-    const response = await alterEmployeeUseCase.alter(unexistentEmployee);
+    const response = await alterEmployeeUseCase.alter(
+      unexistentEmployee.email,
+      unexistentEmployee
+    );
 
     expect(response).toEqual(left(new NoResultError(unexistentEmployee.email)));
   })
