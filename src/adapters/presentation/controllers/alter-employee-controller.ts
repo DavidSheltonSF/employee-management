@@ -51,7 +51,7 @@ export class AlterEmployeeController {
           return badRequest(new MissingParamError('department'));
         }
 
-        const response: AlterEmployeeResponse = await this.alterEmployee.alter(
+        const response: AlterEmployeeResponse = await this.alterEmployee.alter(email,
           { name, lastName, email, birthday, gender, role, department }
         );
 
