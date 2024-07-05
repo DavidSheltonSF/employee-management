@@ -22,8 +22,8 @@ describe('alterRole validator', () => {
     const spyRoleRepository = new SpyRoleRepository(fakeDataBase);
     const alterRoleUseCase = new AlterRole(spyRoleRepository);
     
-    const response = await alterRoleUseCase.alter({
-      name: 'manager',
+    const response = await alterRoleUseCase.alter('manager', {
+      name: 'assistant',
       department: 'technology', 
     });
 
@@ -33,7 +33,7 @@ describe('alterRole validator', () => {
     // Checking if params were added to the spy correctly
     expect(spyRoleRepository.updateParams['roleData'])
       .toEqual({
-        name: 'manager',
+        name: 'assistant',
         department: 'technology', 
       });
   });
@@ -46,7 +46,7 @@ describe('alterRole validator', () => {
       name: 'faken',
       department: 'fekenaldo', 
     }
-    const response = await alterRoleUseCase.alter(fakeRole);
+    const response = await alterRoleUseCase.alter(fakeRole.name, fakeRole);
 
     expect(response).toEqual(left(new NoResultError(fakeRole.name)));
   })
