@@ -29,7 +29,7 @@ describe('alterUser validator', () => {
     const spyUserRepository = new SpyUserRepository(fakeDataBase);
     const alterUserUseCase = new AlterUser(spyUserRepository);
     
-    const response = await alterUserUseCase.alter({
+    const response = await alterUserUseCase.alter('marcos@bugmail.com', {
       name: 'Antonio',
       lastName: 'Jeraldo', 
       email: 'marcos@bugmail.com',
@@ -62,7 +62,7 @@ describe('alterUser validator', () => {
       userRole: 'admin',
       password: 'fake123'
     }
-    const response = await alterUserUseCase.alter(fakeUser);
+    const response = await alterUserUseCase.alter('fake@bugmail.com', fakeUser);
 
     expect(response).toEqual(left(new NoResultError(fakeUser.email)));
   })

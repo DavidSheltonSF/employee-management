@@ -128,7 +128,7 @@ describe('MongodbUserRepository validator', () => {
 
     await repository.add(newUser);
 
-    await repository.update({
+    await repository.update('new@bugmail.com', {
       name: 'UPDATED',
       lastName: 'JonwIKI',
       email: 'new@bugmail.com',

@@ -39,8 +39,8 @@ export class MongodbUserRepository implements UserRepository{
     }
   }
 
-  async update(userData: UserData): Promise<void>{
-    const { email } = userData;
+  async update(email: string, userData: UserData): Promise<void>{
+
     const userCollection = mongoHelper.getCollection('users');
     const exists = await this.exists(email);
     if (exists){

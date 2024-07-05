@@ -12,14 +12,14 @@ export class AlterUser implements AlterUserInterface {
     this.userRepository = userRepo;
   }
 
-  async alter(userData: UserData): Promise<AlterUserResponse>{
-    const { email } = userData;
+  async alter(email: string, userData: UserData): Promise<AlterUserResponse>{
+
     const user = await this.userRepository.findUserByEmail(email);
     if (!user){
       return left(new NoResultError(email))
     }
 
-    await this.userRepository.update(userData);
+    await this.userRepository.update(email, userData);
 
     return right(user)
 

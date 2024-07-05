@@ -4,7 +4,7 @@ import { UserRepository } from "../_ports/user-repository";
 export class SpyUserRepository implements UserRepository {
   users: UserData[] = [];
   addParams: Record<string, UserData> = {}
-  updateParams: Record<string, UserData> = {};
+  updateParams: Record<string, string | UserData> = {};
   deleteParams: Record<string, string > = {};
 
   constructor(users: UserData[]){
@@ -37,7 +37,8 @@ export class SpyUserRepository implements UserRepository {
     this.addParams['userData'] = userData
   }
 
-  async update (userData: UserData): Promise<void>{
+  async update (email: string, userData: UserData): Promise<void>{
+    this.updateParams['email'] = email;
     this.updateParams['userData'] = userData;
   }
 

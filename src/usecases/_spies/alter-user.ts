@@ -8,17 +8,17 @@ import { NoResultError } from "../_errors/no-result";
 
 export class AlterUserSpy implements AlterUser {
   private readonly userRepository: UserRepository
-  alterParam: Record<string, UserData> = {};
+  alterParam: Record<string, string | UserData> = {};
 
   constructor(userRepo: UserRepository){
     this.userRepository = userRepo;
   }
 
-  async alter(userData: UserData): Promise<AlterUserResponse> {
+  async alter(email: string, userData: UserData): Promise<AlterUserResponse> {
 
+    this.alterParam['email'] = email;
     this.alterParam['userData'] = userData;
 
-    const { email } = userData;
     const user = await this.userRepository.findUserByEmail(email);
 
     if (!user){

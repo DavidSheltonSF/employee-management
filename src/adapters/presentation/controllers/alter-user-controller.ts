@@ -43,7 +43,7 @@ export class AlterUserController {
           return badRequest(new MissingParamError('userRole'));
         }
 
-        const response: AlterUserResponse = await this.alterUser.alter(
+        const response: AlterUserResponse = await this.alterUser.alter(email,
           { name, lastName, email, password, userRole }
         );
 
