@@ -4,7 +4,7 @@ import { RoleRepository } from "../_ports/role-repository";
 export class SpyRoleRepository implements RoleRepository {
   roles: RoleData[] = [];
   addParams: Record<string, RoleData> = {}
-  updateParams: Record<string, RoleData> = {};
+  updateParams: Record<string, string | RoleData> = {};
   deleteParams: Record<string, string > = {};
 
   constructor(roles: RoleData[]){
@@ -37,7 +37,8 @@ export class SpyRoleRepository implements RoleRepository {
     this.addParams['roleData'] = roleData
   }
 
-  async update (roleData: RoleData): Promise<void>{
+  async update (name: string, roleData: RoleData): Promise<void>{
+    this.updateParams['name'] = name;
     this.updateParams['roleData'] = roleData;
   }
 

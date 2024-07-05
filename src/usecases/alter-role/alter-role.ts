@@ -19,7 +19,7 @@ export class AlterRole implements AlterRoleInterface {
       return left(new NoResultError(name))
     }
 
-    await this.roleRepository.update(roleData);
+    await this.roleRepository.update(name, roleData);
 
     return right(role)
   }
